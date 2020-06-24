@@ -51,6 +51,7 @@
     <action android:id="@+id/action_global_trackingProtectionPanelDialogFragment" app:destination="@id/trackingProtectionPanelDialogFragment" />
     <action android:id="@+id/action_global_quickSettingsSheetDialogFragment" app:destination="@id/quickSettingsSheetDialogFragment"/>
     <action android:id="@+id/action_global_tabTrayDialogFragment" app:destination="@id/tabTrayDialogFragment"/>
+    <action android:id="@+id/action_global_savedLoginsAuthFragment" app:destination="@id/savedLoginsAuthFragment"/>
 
     <dialog
         android:id="@+id/tabTrayDialogFragment"

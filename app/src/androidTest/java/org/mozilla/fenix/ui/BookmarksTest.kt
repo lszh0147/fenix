@@ -233,7 +233,7 @@ class BookmarksTest {
             IdlingRegistry.getInstance().register(bookmarksListIdlingResource!!)
         }.openThreeDotMenu(defaultWebPage.url) {
         }.clickOpenInNewTab {
-            // verifyPageContent(defaultWebPage.content)
+            verifyUrl(defaultWebPage.url.toString())
         }.openTabDrawer {
             verifyNormalModeSelected()
         }
@@ -252,7 +252,7 @@ class BookmarksTest {
             IdlingRegistry.getInstance().register(bookmarksListIdlingResource!!)
         }.openThreeDotMenu(defaultWebPage.url) {
         }.clickOpenInPrivateTab {
-            // verifyPageContent(defaultWebPage.content)
+            verifyUrl(defaultWebPage.url.toString())
         }.openTabDrawer {
             verifyPrivateModeSelected()
         }

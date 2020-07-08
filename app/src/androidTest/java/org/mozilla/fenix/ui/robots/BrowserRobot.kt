@@ -30,6 +30,7 @@ import androidx.test.uiautomator.By.text
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiSelector
 import androidx.test.uiautomator.Until
+import androidx.test.uiautomator.Until.findObject
 import androidx.test.uiautomator.Until.hasObject
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.containsString
@@ -336,21 +337,13 @@ class BrowserRobot {
     }
 
     fun waitForPlaybackToStart() {
-        mDevice.waitNotNull(
-            hasObject(
-                text("Media file is playing")
-            ), waitingTimeShort
-        )
+        val playStateMessage = mDevice.findObject(UiSelector().text("Media file is playing"))
+        assertTrue(playStateMessage.waitForExists(waitingTime))
     }
 
     fun verifyMediaIsPaused() {
-        mDevice.waitNotNull(
-            hasObject(
-                text("Media file is paused")
-            ), waitingTimeShort
-        )
-
-        mDevice.findObject(UiSelector().text("Media file is paused")).exists()
+        val pausedStateMessage = mDevice.findObject(UiSelector().text("Media file is paused"))
+        assertTrue(pausedStateMessage.waitForExists(waitingTime))
     }
 
     class Transition {

@@ -64,7 +64,7 @@ class TabbedBrowsingTest {
 
         navigationToolbar {
         }.openNewTabAndEnterToBrowser(defaultWebPage.url) {
-            // verifyPageContent(defaultWebPage.content)
+            mDevice.waitForIdle()
             verifyTabCounter("1")
         }.openTabDrawer {
             verifyExistingTabList()
@@ -90,7 +90,7 @@ class TabbedBrowsingTest {
 
         navigationToolbar {
         }.openNewTabAndEnterToBrowser(defaultWebPage.url) {
-            // verifyPageContent(defaultWebPage.content)
+            mDevice.waitForIdle()
             verifyTabCounter("1")
         }.openTabDrawer {
             verifyExistingTabList()
@@ -108,7 +108,6 @@ class TabbedBrowsingTest {
 
         navigationToolbar {
         }.enterURLAndEnterToBrowser(defaultWebPage.url) {
-            // verifyPageContent(defaultWebPage.content)
         }.openTabDrawer {
             verifyExistingTabList()
         }.openTabsListThreeDotMenu {
@@ -126,7 +125,6 @@ class TabbedBrowsingTest {
 
         navigationToolbar {
         }.enterURLAndEnterToBrowser(defaultWebPage.url) {
-            // verifyPageContent(defaultWebPage.content)
         }.openTabDrawer {
             verifyPrivateModeSelected()
             verifyExistingTabList()
@@ -147,7 +145,6 @@ class TabbedBrowsingTest {
         genericURLS.forEachIndexed { index, element ->
             navigationToolbar {
             }.openNewTabAndEnterToBrowser(element.url) {
-                // verifyPageContent(element.content)
             }.openTabDrawer {
                 verifyExistingOpenTabs("Test_Page_${index + 1}")
                 verifyCloseTabsButton("Test_Page_${index + 1}")
@@ -180,7 +177,6 @@ class TabbedBrowsingTest {
         genericURLS.forEachIndexed { index, element ->
             navigationToolbar {
             }.openNewTabAndEnterToBrowser(element.url) {
-                // verifyPageContent(element.content)
             }.openTabDrawer {
                 verifyExistingOpenTabs("Test_Page_${index + 1}")
                 verifyCloseTabsButton("Test_Page_${index + 1}")

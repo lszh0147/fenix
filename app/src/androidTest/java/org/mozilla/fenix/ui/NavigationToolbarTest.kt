@@ -5,7 +5,9 @@
 package org.mozilla.fenix.ui
 
 import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.uiautomator.By.text
 import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.Until
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
@@ -15,6 +17,7 @@ import org.junit.Test
 import org.mozilla.fenix.helpers.AndroidAssetDispatcher
 import org.mozilla.fenix.helpers.HomeActivityTestRule
 import org.mozilla.fenix.helpers.TestAssetHelper
+import org.mozilla.fenix.helpers.ext.waitNotNull
 import org.mozilla.fenix.ui.robots.navigationToolbar
 
 /**
@@ -55,18 +58,12 @@ class NavigationToolbarTest {
 
         navigationToolbar {
         }.enterURLAndEnterToBrowser(defaultWebPage.url) {
-            // verifyPageContent(defaultWebPage.content)
+            mDevice.waitForIdle()
         }.openNavigationToolbar {
         }.enterURLAndEnterToBrowser(nextWebPage.url) {
-            // verifyPageContent(nextWebPage.content)
-        }
-
-        // Re-open the three-dot menu for verification
-        navigationToolbar {
-        }.openThreeDotMenu {
-            verifyThreeDotMenuExists()
-        }.goBack {
-            // verifyPageContent(defaultWebPage.content)
+            verifyUrl(nextWebPage.url.toString())
+            mDevice.pressBack()
+            verifyUrl(defaultWebPage.url.toString())
         }
     }
 
@@ -77,12 +74,14 @@ class NavigationToolbarTest {
 
         navigationToolbar {
         }.enterURLAndEnterToBrowser(defaultWebPage.url) {
-            // verifyPageContent(defaultWebPage.content)
+            mDevice.waitForIdle()
         }.openNavigationToolbar {
         }.enterURLAndEnterToBrowser(nextWebPage.url) {
-            // verifyPageContent(nextWebPage.content)
+            mDevice.waitForIdle()
+            verifyUrl(nextWebPage.url.toString())
             mDevice.pressBack()
-            // verifyPageContent(defaultWebPage.content)
+            mDevice.waitForIdle()
+            verifyUrl(defaultWebPage.url.toString())
         }
 
         // Re-open the three-dot menu for verification
@@ -91,7 +90,7 @@ class NavigationToolbarTest {
             verifyThreeDotMenuExists()
             verifyForwardButton()
         }.goForward {
-            // verifyPageContent(nextWebPage.content)
+            verifyUrl(nextWebPage.url.toString())
         }
     }
 
@@ -101,7 +100,7 @@ class NavigationToolbarTest {
 
         navigationToolbar {
         }.enterURLAndEnterToBrowser(refreshWebPage.url) {
-            // verifyPageContent("DEFAULT")
+            mDevice.waitForIdle()
         }
 
         // Use refresh from the three-dot menu
@@ -110,7 +109,7 @@ class NavigationToolbarTest {
             verifyThreeDotMenuExists()
             verifyRefreshButton()
         }.refreshPage {
-            // verifyPageContent("REFRESHED")
+            mDevice.waitNotNull(Until.findObject(text("REFRESHED")))
         }
     }
 
@@ -120,7 +119,7 @@ class NavigationToolbarTest {
 
         navigationToolbar {
         }.enterURLAndEnterToBrowser(defaultWebPage.url) {
-            // verifyPageContent(defaultWebPage.content)
+            verifyUrl(defaultWebPage.url.toString())
         }
     }
 
@@ -131,7 +130,7 @@ class NavigationToolbarTest {
 
         navigationToolbar {
         }.enterURLAndEnterToBrowser(loremIpsumWebPage.url) {
-            // verifyPageContent(loremIpsumWebPage.content)
+            mDevice.waitForIdle()
         }
 
         navigationToolbar {

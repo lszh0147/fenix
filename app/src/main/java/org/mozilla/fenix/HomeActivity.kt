@@ -45,6 +45,8 @@ import mozilla.components.feature.search.SearchAdapter
 import mozilla.components.service.fxa.sync.SyncReason
 import mozilla.components.support.base.feature.UserInteractionHandler
 import mozilla.components.support.ktx.android.arch.lifecycle.addObservers
+import mozilla.components.support.ktx.android.content.call
+import mozilla.components.support.ktx.android.content.email
 import mozilla.components.support.ktx.android.content.share
 import mozilla.components.support.ktx.kotlin.isUrl
 import mozilla.components.support.ktx.kotlin.toNormalizedUrl
@@ -294,10 +296,12 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
         EngineView::class.java.name -> components.core.engine.createView(context, attrs).apply {
             selectionActionDelegate = DefaultSelectionActionDelegate(
                 getSearchAdapter(components.core.store),
-                resources = context.resources
-            ) {
-                share(it)
-            }
+                resources = context.resources,
+                shareTextClicked = { share(it) },
+                emailTextClicked = { email(it) },
+                callTextClicked = { call(it) },
+                actionSorter = ::actionSorter
+            )
         }.asView()
         TabsTray::class.java.name -> {
             val layout = LinearLayoutManager(context).apply {
@@ -311,6 +315,22 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
             BrowserTabsTray(context, attrs, 0, adapter, layout)
         }
         else -> super.onCreateView(parent, name, context, attrs)
+    }
+
+    @Suppress("MagicNumber")
+    // Defining the positions as constants doesn't seem super useful here.
+    private fun actionSorter(actions: Array<String>): Array<String> {
+        val order = hashMapOf<String, Int>()
+
+        order["org.mozilla.geckoview.COPY"] = 0
+        order["CUSTOM_CONTEXT_MENU_SEARCH"] = 1
+        order["org.mozilla.geckoview.SELECT_ALL"] = 2
+        order["CUSTOM_CONTEXT_MENU_SHARE"] = 3
+
+        return actions.sortedBy { actionName ->
+            // Sort the actions in our preferred order, putting "other" actions unsorted at the end
+            order[actionName] ?: actions.size
+        }.toTypedArray()
     }
 
     final override fun onBackPressed() {
@@ -502,6 +522,7 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
         engine: SearchEngine?,
         forceSearch: Boolean
     ) {
+        val startTime = components.core.engine.profiler?.getProfilerTime()
         val mode = browsingModeManager.mode
 
         val loadUrlUseCase = if (newTab) {
@@ -528,6 +549,12 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
             loadUrlUseCase.invoke(searchTermOrURL.toNormalizedUrl())
         } else {
             searchUseCase.invoke(searchTermOrURL)
+        }
+
+        if (components.core.engine.profiler?.isProfilerActive() == true) {
+            // Wrapping the `addMarker` method with `isProfilerActive` even though it's no-op when
+            // profiler is not active. That way, `text` argument will not create a string builder all the time.
+            components.core.engine.profiler?.addMarker("HomeActivity.load", startTime, "newTab: $newTab")
         }
     }
 

@@ -28,7 +28,7 @@
         app:destination="@id/searchFragment" />
 
     <action android:id="@+id/action_global_shareFragment" app:destination="@id/shareFragment" />
-    <action android:id="@+id/action_global_crash_reporter" app:destination="@id/crashReporterFragment" />
+<!--    <action android:id="@+id/action_global_crash_reporter" app:destination="@id/crashReporterFragment" />-->
     <action android:id="@+id/action_global_turn_on_sync" app:destination="@id/turnOnSyncFragment" />
     <action android:id="@+id/action_global_settings_addonsManagementFragment" app:destination="@id/addonsManagementFragment" />
     <action android:id="@+id/action_global_searchEngineFragment" app:destination="@id/searchEngineFragment" />
@@ -546,13 +546,13 @@
         android:id="@+id/secretSettingsPreference"
         android:name="org.mozilla.fenix.settings.SecretSettingsFragment"
         android:label="@string/preferences_debug_settings" />
-    <fragment
-        android:id="@+id/crashReporterFragment"
-        android:name="org.mozilla.fenix.crashes.CrashReporterFragment">
-        <argument
-            android:name="crashIntent"
-            app:argType="android.content.Intent" />
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/crashReporterFragment"-->
+<!--        android:name="org.mozilla.fenix.crashes.CrashReporterFragment">-->
+<!--        <argument-->
+<!--            android:name="crashIntent"-->
+<!--            app:argType="android.content.Intent" />-->
+<!--    </fragment>-->
     <fragment
         android:id="@+id/customizationFragment"
         android:name="org.mozilla.fenix.settings.CustomizationFragment"

@@ -49,7 +49,7 @@ import org.mozilla.fenix.utils.RunWhenReadyQueue
 class BackgroundServices(
     private val context: Context,
 //    private val push: Push,
-    crashReporter: CrashReporter,
+//    crashReporter: CrashReporter,
     historyStorage: Lazy<PlacesHistoryStorage>,
     bookmarkStorage: Lazy<PlacesBookmarksStorage>,
     passwordsStorage: Lazy<SyncableLoginsStorage>,
@@ -107,7 +107,7 @@ class BackgroundServices(
         context.components.analytics.metrics
     )
 
-    val accountAbnormalities = AccountAbnormalities(context, crashReporter)
+    val accountAbnormalities = AccountAbnormalities(context)
 
     val accountManager by lazy { makeAccountManager(context, serverConfig, deviceConfig, syncConfig) }
 

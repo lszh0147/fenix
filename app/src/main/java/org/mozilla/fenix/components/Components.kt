@@ -34,7 +34,7 @@ class Components(private val context: Context) {
         BackgroundServices(
             context,
 //            push,
-            analytics.crashReporter,
+//            analytics.crashReporter,
             core.lazyHistoryStorage,
             core.lazyBookmarksStorage,
             core.lazyPasswordsStorage,

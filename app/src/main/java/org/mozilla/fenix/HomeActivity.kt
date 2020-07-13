@@ -183,7 +183,7 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
         if (settings().isTelemetryEnabled) {
             lifecycle.addObserver(
                 BreadcrumbsRecorder(
-                    components.analytics.crashReporter,
+//                    components.analytics.crashReporter,
                     navHost.navController, ::getBreadcrumbMessage
                 )
             )

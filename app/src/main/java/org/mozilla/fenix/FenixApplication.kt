@@ -279,7 +279,7 @@ open class FenixApplication : LocaleAwareApplication() {
         return GlobalScope.async(Dispatchers.IO) {
             // ... but RustHttpConfig.setClient() and RustLog.enable() can be called later.
             RustHttpConfig.setClient(lazy { components.core.client })
-            RustLog.enable(components.analytics.crashReporter)
+//            RustLog.enable(components.analytics.crashReporter)
         }
     }
 

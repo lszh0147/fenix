@@ -10,7 +10,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import mozilla.components.lib.crash.CrashReporter
+//import mozilla.components.lib.crash.CrashReporter
 import mozilla.components.support.base.crash.Breadcrumb
 
 /**
@@ -20,7 +20,7 @@ import mozilla.components.support.base.crash.Breadcrumb
  * It will automatically be removed when the lifecycle owner is destroyed.
  */
 class BreadcrumbsRecorder(
-    private val crashReporter: CrashReporter,
+//    private val crashReporter: CrashReporter,
     private val navController: NavController,
     private val getBreadcrumbMessage: (NavDestination) -> String
 ) : NavController.OnDestinationChangedListener, LifecycleObserver {

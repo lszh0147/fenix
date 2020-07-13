@@ -8,11 +8,11 @@ import android.app.Application
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import mozilla.components.lib.crash.CrashReporter
-import mozilla.components.lib.crash.service.CrashReporterService
-import mozilla.components.lib.crash.service.GleanCrashReporterService
-import mozilla.components.lib.crash.service.MozillaSocorroService
-import mozilla.components.lib.crash.service.SentryService
+//import mozilla.components.lib.crash.CrashReporter
+//import mozilla.components.lib.crash.service.CrashReporterService
+//import mozilla.components.lib.crash.service.GleanCrashReporterService
+//import mozilla.components.lib.crash.service.MozillaSocorroService
+//import mozilla.components.lib.crash.service.SentryService
 import org.mozilla.fenix.BuildConfig
 import org.mozilla.fenix.Config
 import org.mozilla.fenix.HomeActivity
@@ -36,53 +36,53 @@ import org.mozilla.geckoview.BuildConfig.MOZ_UPDATE_CHANNEL
 class Analytics(
     private val context: Context
 ) {
-    val crashReporter: CrashReporter by lazy {
-        val services = mutableListOf<CrashReporterService>()
-
-        if (isSentryEnabled()) {
-            val sentryService = SentryService(
-                context,
-                BuildConfig.SENTRY_TOKEN,
-                tags = mapOf("geckoview" to "$MOZ_APP_VERSION-$MOZ_APP_BUILDID"),
-                environment = BuildConfig.BUILD_TYPE,
-                sendEventForNativeCrashes = false, // Do not send native crashes to Sentry
-                sentryProjectUrl = getSentryProjectUrl()
-            )
-
-            services.add(sentryService)
-        }
-
-        // The name "Fenix" here matches the product name on Socorro and is unrelated to the actual app name:
-        // https://bugzilla.mozilla.org/show_bug.cgi?id=1523284
-        val socorroService = MozillaSocorroService(context, appName = "Fenix",
-            version = MOZ_APP_VERSION, buildId = MOZ_APP_BUILDID, vendor = MOZ_APP_VENDOR,
-            releaseChannel = MOZ_UPDATE_CHANNEL)
-        services.add(socorroService)
-
-        val intent = Intent(context, HomeActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-        }
-
-        val pendingIntent = PendingIntent.getActivity(
-            context,
-            0,
-            intent,
-            0
-        )
-
-        CrashReporter(
-            context = context,
-            services = services,
-            telemetryServices = listOf(GleanCrashReporterService(context)),
-            shouldPrompt = CrashReporter.Prompt.ALWAYS,
-            promptConfiguration = CrashReporter.PromptConfiguration(
-                appName = context.getString(R.string.app_name),
-                organizationName = "Mozilla"
-            ),
-            enabled = true,
-            nonFatalCrashIntent = pendingIntent
-        )
-    }
+//    val crashReporter: CrashReporter by lazy {
+//        val services = mutableListOf<CrashReporterService>()
+//
+//        if (isSentryEnabled()) {
+//            val sentryService = SentryService(
+//                context,
+//                BuildConfig.SENTRY_TOKEN,
+//                tags = mapOf("geckoview" to "$MOZ_APP_VERSION-$MOZ_APP_BUILDID"),
+//                environment = BuildConfig.BUILD_TYPE,
+//                sendEventForNativeCrashes = false, // Do not send native crashes to Sentry
+//                sentryProjectUrl = getSentryProjectUrl()
+//            )
+//
+//            services.add(sentryService)
+//        }
+//
+//        // The name "Fenix" here matches the product name on Socorro and is unrelated to the actual app name:
+//        // https://bugzilla.mozilla.org/show_bug.cgi?id=1523284
+//        val socorroService = MozillaSocorroService(context, appName = "Fenix",
+//            version = MOZ_APP_VERSION, buildId = MOZ_APP_BUILDID, vendor = MOZ_APP_VENDOR,
+//            releaseChannel = MOZ_UPDATE_CHANNEL)
+//        services.add(socorroService)
+//
+//        val intent = Intent(context, HomeActivity::class.java).apply {
+//            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+//        }
+//
+//        val pendingIntent = PendingIntent.getActivity(
+//            context,
+//            0,
+//            intent,
+//            0
+//        )
+//
+//        CrashReporter(
+//            context = context,
+//            services = services,
+//            telemetryServices = listOf(GleanCrashReporterService(context)),
+//            shouldPrompt = CrashReporter.Prompt.ALWAYS,
+//            promptConfiguration = CrashReporter.PromptConfiguration(
+//                appName = context.getString(R.string.app_name),
+//                organizationName = "Mozilla"
+//            ),
+//            enabled = true,
+//            nonFatalCrashIntent = pendingIntent
+//        )
+//    }
 
     val metrics: MetricController by lazy {
         MetricController.create(

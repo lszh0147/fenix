@@ -532,7 +532,7 @@ dependencies {
     implementation Deps.mozilla_ui_icons
     implementation Deps.mozilla_ui_publicsuffixlist
 
-    implementation Deps.mozilla_lib_crash
+//    implementation Deps.mozilla_lib_crash
 //    implementation Deps.mozilla_lib_push_firebase //删除谷歌firebase
     implementation Deps.mozilla_lib_dataprotect
     debugImplementation Deps.leakcanary

@@ -22,7 +22,7 @@ import mozilla.appservices.Megazord
 import mozilla.components.browser.session.Session
 //import mozilla.components.concept.push.PushProcessor
 import mozilla.components.feature.addons.update.GlobalAddonDependencyProvider
-import mozilla.components.lib.crash.CrashReporter
+//import mozilla.components.lib.crash.CrashReporter
 import mozilla.components.service.experiments.Experiments
 import mozilla.components.service.glean.Glean
 import mozilla.components.service.glean.config.Configuration
@@ -52,7 +52,7 @@ import org.mozilla.fenix.utils.Settings
 
 /**
  *The main application class for Fenix. Records data to measure initialization performance.
- *  Installs [CrashReporter], initializes [Glean]  in fenix builds and setup Megazord in the main process.
+ *  Installs  , initializes [Glean]  in fenix builds and setup Megazord in the main process.
  */
 @Suppress("Registered", "TooManyFunctions", "LargeClass")
 open class FenixApplication : LocaleAwareApplication() {
@@ -110,7 +110,7 @@ open class FenixApplication : LocaleAwareApplication() {
 
     @CallSuper
     open fun setupInAllProcesses() {
-        setupCrashReporting()
+//        setupCrashReporting()
 
         // We want the log messages of all builds to go to Android logcat
         Log.addSink(AndroidLogSink())
@@ -255,12 +255,12 @@ open class FenixApplication : LocaleAwareApplication() {
 //        }
     }
 
-    private fun setupCrashReporting() {
-        components
-            .analytics
-            .crashReporter
-            .install(this)
-    }
+//    private fun setupCrashReporting() {
+//        components
+//            .analytics
+//            .crashReporter
+//            .install(this)
+//    }
 
     /**
      * Initiate Megazord sequence! Megazord Battle Mode!

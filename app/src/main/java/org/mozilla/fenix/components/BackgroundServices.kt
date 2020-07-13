@@ -19,7 +19,7 @@ import mozilla.components.concept.sync.OAuthAccount
 //import mozilla.components.feature.accounts.push.FxaPushSupportFeature
 import mozilla.components.feature.accounts.push.SendTabFeature
 import mozilla.components.feature.syncedtabs.storage.SyncedTabsStorage
-import mozilla.components.lib.crash.CrashReporter
+//import mozilla.components.lib.crash.CrashReporter
 import mozilla.components.service.fxa.DeviceConfig
 import mozilla.components.service.fxa.ServerConfig
 import mozilla.components.service.fxa.SyncConfig

@@ -7,7 +7,7 @@ import android.os.Bundle
 import mozilla.components.browser.engine.gecko.autofill.GeckoLoginDelegateWrapper
 import mozilla.components.browser.engine.gecko.glean.GeckoAdapter
 import mozilla.components.concept.storage.LoginsStorage
-import mozilla.components.lib.crash.handler.CrashHandlerService
+//import mozilla.components.lib.crash.handler.CrashHandlerService
 import mozilla.components.service.sync.logins.GeckoLoginStorageDelegate
 import org.mozilla.fenix.Config
 import org.mozilla.fenix.utils.Settings
@@ -42,7 +42,7 @@ object GeckoProvider {
         }
 
         val runtimeSettings = builder
-            .crashHandler(CrashHandlerService::class.java)
+//            .crashHandler(CrashHandlerService::class.java)
             .telemetryDelegate(GeckoAdapter())
             .debugLogging(Config.channel.isDebug)
             .aboutConfigEnabled(true)

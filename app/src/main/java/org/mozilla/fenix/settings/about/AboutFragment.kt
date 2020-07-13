@@ -22,7 +22,7 @@ import org.mozilla.fenix.BuildConfig
 import org.mozilla.fenix.HomeActivity
 import org.mozilla.fenix.R
 import org.mozilla.fenix.components.metrics.Event
-import org.mozilla.fenix.crashes.CrashListActivity
+//import org.mozilla.fenix.crashes.CrashListActivity
 import org.mozilla.fenix.ext.requireComponents
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.settings.SupportUtils
@@ -226,7 +226,7 @@ class AboutFragment : Fragment(), AboutPageListener {
 //                openLibrariesPage()
             }
             is AboutItem.Crashes -> {
-                startActivity(Intent(requireContext(), CrashListActivity::class.java))
+//                startActivity(Intent(requireContext(), CrashListActivity::class.java))
             }
         }
     }

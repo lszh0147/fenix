@@ -118,8 +118,8 @@ object Deps {
 
     const val mozilla_service_digitalassetlinks =
         "org.mozilla.components:service-digitalassetlinks:${Versions.mozilla_android_components}"
-    const val mozilla_service_experiments =
-        "org.mozilla.components:service-experiments:${Versions.mozilla_android_components}"
+//    const val mozilla_service_experiments =
+//        "org.mozilla.components:service-experiments:${Versions.mozilla_android_components}"
     const val mozilla_service_sync_logins =
         "org.mozilla.components:service-sync-logins:${Versions.mozilla_android_components}"
     const val mozilla_service_firefox_accounts = "org.mozilla.components:service-firefox-accounts:${Versions.mozilla_android_components}"

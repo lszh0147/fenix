@@ -23,7 +23,7 @@ import mozilla.components.browser.session.Session
 //import mozilla.components.concept.push.PushProcessor
 import mozilla.components.feature.addons.update.GlobalAddonDependencyProvider
 //import mozilla.components.lib.crash.CrashReporter
-import mozilla.components.service.experiments.Experiments
+//import mozilla.components.service.experiments.Experiments
 import mozilla.components.service.glean.Glean
 import mozilla.components.service.glean.config.Configuration
 import mozilla.components.service.glean.net.ConceptFetchHttpUploader
@@ -169,25 +169,25 @@ open class FenixApplication : LocaleAwareApplication() {
 
         // Enable the service-experiments component to be initialized after visual completeness
         // for performance wins.
-        if (settings().isExperimentationEnabled) {
-            taskQueue.runIfReadyOrQueue {
-                Experiments.initialize(
-                    applicationContext = applicationContext,
-                    onExperimentsUpdated = {
-                        ExperimentsManager.initSearchWidgetExperiment(this)
-                    },
-                    configuration = mozilla.components.service.experiments.Configuration(
-                        httpClient = components.core.client,
-                        kintoEndpoint = KINTO_ENDPOINT_PROD
-                    )
-                )
-                ExperimentsManager.initSearchWidgetExperiment(this)
-            }
-        } else {
-            // We should make a better way to opt out for when we have more experiments
-            // See https://github.com/mozilla-mobile/fenix/issues/6278
-            ExperimentsManager.optOutSearchWidgetExperiment(this)
-        }
+//        if (settings().isExperimentationEnabled) {
+//            taskQueue.runIfReadyOrQueue {
+//                Experiments.initialize(
+//                    applicationContext = applicationContext,
+//                    onExperimentsUpdated = {
+//                        ExperimentsManager.initSearchWidgetExperiment(this)
+//                    },
+//                    configuration = mozilla.components.service.experiments.Configuration(
+//                        httpClient = components.core.client,
+//                        kintoEndpoint = KINTO_ENDPOINT_PROD
+//                    )
+//                )
+//                ExperimentsManager.initSearchWidgetExperiment(this)
+//            }
+//        } else {
+//            // We should make a better way to opt out for when we have more experiments
+//            // See https://github.com/mozilla-mobile/fenix/issues/6278
+//            ExperimentsManager.optOutSearchWidgetExperiment(this)
+//        }
 
         components.performance.visualCompletenessQueue.runIfReadyOrQueue {
             GlobalScope.launch(Dispatchers.IO) {

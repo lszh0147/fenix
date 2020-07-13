@@ -17,7 +17,7 @@ import org.mozilla.fenix.components.metrics.Event
 import org.mozilla.fenix.components.metrics.Event.PerformedSearch.SearchAccessPoint.ACTION
 import org.mozilla.fenix.components.metrics.Event.PerformedSearch.SearchAccessPoint.NONE
 import org.mozilla.fenix.components.metrics.Event.PerformedSearch.SearchAccessPoint.SUGGESTION
-import org.mozilla.fenix.components.metrics.MetricsUtils
+//import org.mozilla.fenix.components.metrics.MetricsUtils
 import org.mozilla.fenix.components.searchengine.CustomSearchEngineStore
 import org.mozilla.fenix.crashes.CrashListActivity
 import org.mozilla.fenix.ext.components
@@ -74,26 +74,26 @@ class DefaultSearchController(
             engine = store.state.searchEngineSource.searchEngine
         )
 
-        val event = if (url.isUrl()) {
-            Event.EnteredUrl(false)
-        } else {
-            activity.settings().incrementActiveSearchCount()
+//        val event = if (url.isUrl()) {
+//            Event.EnteredUrl(false)
+//        } else {
+//            activity.settings().incrementActiveSearchCount()
 
-            val searchAccessPoint = when (store.state.searchAccessPoint) {
-                NONE -> ACTION
-                else -> store.state.searchAccessPoint
-            }
+//            val searchAccessPoint = when (store.state.searchAccessPoint) {
+//                NONE -> ACTION
+//                else -> store.state.searchAccessPoint
+//            }
 
-            searchAccessPoint?.let { sap ->
-                MetricsUtils.createSearchEvent(
-                    store.state.searchEngineSource.searchEngine,
-                    activity,
-                    sap
-                )
-            }
-        }
+//            searchAccessPoint?.let { sap ->
+//                MetricsUtils.createSearchEvent(
+//                    store.state.searchEngineSource.searchEngine,
+//                    activity,
+//                    sap
+//                )
+//            }
+//        }
 
-        event?.let { activity.metrics.track(it) }
+//        event?.let { activity.metrics.track(it) }
     }
 
     override fun handleEditingCancelled() {
@@ -143,20 +143,20 @@ class DefaultSearchController(
             engine = store.state.searchEngineSource.searchEngine,
             forceSearch = true
         )
-
-        val searchAccessPoint = when (store.state.searchAccessPoint) {
-            NONE -> SUGGESTION
-            else -> store.state.searchAccessPoint
-        }
-
-        val event = searchAccessPoint?.let { sap ->
-            MetricsUtils.createSearchEvent(
-                store.state.searchEngineSource.searchEngine,
-                activity,
-                sap
-            )
-        }
-        event?.let { activity.metrics.track(it) }
+//
+//        val searchAccessPoint = when (store.state.searchAccessPoint) {
+//            NONE -> SUGGESTION
+//            else -> store.state.searchAccessPoint
+//        }
+//
+//        val event = searchAccessPoint?.let { sap ->
+//            MetricsUtils.createSearchEvent(
+//                store.state.searchEngineSource.searchEngine,
+//                activity,
+//                sap
+//            )
+//        }
+//        event?.let { activity.metrics.track(it) }
     }
 
     override fun handleSearchShortcutEngineSelected(searchEngine: SearchEngine) {

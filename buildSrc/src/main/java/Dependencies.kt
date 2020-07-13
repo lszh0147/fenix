@@ -53,7 +53,7 @@ object Deps {
     const val tools_kotlingradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val kotlin_coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
-    const val kotlin_coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
+//    const val kotlin_coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     const val kotlin_coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
 
     const val allopen = "org.jetbrains.kotlin:kotlin-allopen:${Versions.kotlin}"
@@ -141,7 +141,7 @@ object Deps {
     const val mozilla_support_rusthttp = "org.mozilla.components:support-rusthttp:${Versions.mozilla_android_components}"
     const val mozilla_support_rustlog = "org.mozilla.components:support-rustlog:${Versions.mozilla_android_components}"
     const val mozilla_support_utils = "org.mozilla.components:support-utils:${Versions.mozilla_android_components}"
-    const val mozilla_support_test = "org.mozilla.components:support-test:${Versions.mozilla_android_components}"
+//    const val mozilla_support_test = "org.mozilla.components:support-test:${Versions.mozilla_android_components}"
     const val mozilla_support_migration = "org.mozilla.components:support-migration:${Versions.mozilla_android_components}"
     const val mozilla_support_locale = "org.mozilla.components:support-locale:${Versions.mozilla_android_components}"
 
@@ -171,7 +171,7 @@ object Deps {
     const val androidx_core_ktx = "androidx.core:core-ktx:${Versions.androidx_core}"
     const val androidx_transition = "androidx.transition:transition:${Versions.androidx_transition}"
     const val androidx_work_ktx = "androidx.work:work-runtime-ktx:${Versions.androidx_work}"
-    const val androidx_work_testing = "androidx.work:work-testing:${Versions.androidx_work}"
+//    const val androidx_work_testing = "androidx.work:work-testing:${Versions.androidx_work}"
     const val google_material = "com.google.android.material:material:${Versions.google_material}"
     const val google_flexbox = "com.google.android:flexbox:${Versions.google_flexbox}"
 
@@ -188,23 +188,23 @@ object Deps {
     // For the full IDs of these test dependencies, see:
     //   https://developer.android.com/training/testing/set-up-project#android-test-dependencies
     private const val androidx_test_shared_version = "1.3.0-alpha05" // this appears to be shared with many deps.
-    const val androidx_test_core = "androidx.test:core:$androidx_test_shared_version"
+//    const val androidx_test_core = "androidx.test:core:$androidx_test_shared_version"
     private const val androidx_espresso_version = "3.3.0-alpha05"
-    const val espresso_core = "androidx.test.espresso:espresso-core:$androidx_espresso_version"
-    const val espresso_contrib = "androidx.test.espresso:espresso-contrib:$androidx_espresso_version"
-    const val espresso_idling_resources = "androidx.test.espresso:espresso-idling-resource:$androidx_espresso_version"
-    const val espresso_intents = "androidx.test.espresso:espresso-intents:$androidx_espresso_version"
-    const val androidx_junit = "androidx.test.ext:junit:1.1.2-alpha05"
+//    const val espresso_core = "androidx.test.espresso:espresso-core:$androidx_espresso_version"
+//    const val espresso_contrib = "androidx.test.espresso:espresso-contrib:$androidx_espresso_version"
+//    const val espresso_idling_resources = "androidx.test.espresso:espresso-idling-resource:$androidx_espresso_version"
+//    const val espresso_intents = "androidx.test.espresso:espresso-intents:$androidx_espresso_version"
+//    const val androidx_junit = "androidx.test.ext:junit:1.1.2-alpha05"
     // Monitor is unused
-    const val orchestrator = "androidx.test:orchestrator:$androidx_test_shared_version"
-    const val tools_test_runner = "androidx.test:runner:$androidx_test_shared_version"
-    const val tools_test_rules = "androidx.test:rules:$androidx_test_shared_version"
+//    const val orchestrator = "androidx.test:orchestrator:$androidx_test_shared_version"
+//    const val tools_test_runner = "androidx.test:runner:$androidx_test_shared_version"
+//    const val tools_test_rules = "androidx.test:rules:$androidx_test_shared_version"
     // Truth is unused
     // Test services is unused
     // --- END AndroidX test dependencies --- //
 
     const val mockwebserver = "com.squareup.okhttp3:mockwebserver:${Versions.mockwebserver}"
-    const val uiautomator = "androidx.test.uiautomator:uiautomator:${Versions.uiautomator}"
+//    const val uiautomator = "androidx.test.uiautomator:uiautomator:${Versions.uiautomator}"
     const val robolectric = "org.robolectric:robolectric:4.3.1"
 
     const val google_ads_id = "com.google.android.gms:play-services-ads-identifier:${Versions.google_ads_id_version}"

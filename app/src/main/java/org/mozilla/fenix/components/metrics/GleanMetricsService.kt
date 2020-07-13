@@ -658,7 +658,7 @@ class GleanMetricsService(private val context: Context) : MetricsService {
     private val logger = Logger("GleanMetricsService")
     private var initialized = false
 
-    private val activationPing = ActivationPing(context)
+//    private val activationPing = ActivationPing(context)
     private val installationPing = FirstSessionPing(context)
 
     override fun start() {
@@ -734,7 +734,7 @@ class GleanMetricsService(private val context: Context) : MetricsService {
             submissionUrl.set(defaultEngine.buildSearchUrl(""))
         }
 
-        activationPing.checkAndSend()
+//        activationPing.checkAndSend()
         installationPing.checkAndSend()
     }
 

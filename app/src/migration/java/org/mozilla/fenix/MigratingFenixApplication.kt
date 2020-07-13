@@ -42,10 +42,10 @@ class MigratingFenixApplication : FenixApplication() {
     }
 
     val migrationPushSubscriber by lazy {
-        MigrationPushRenewer(
-            components.push.feature,
-            components.migrationStore
-        )
+//        MigrationPushRenewer(
+//            components.push.feature,
+//            components.migrationStore
+//        )
     }
 
     val migrationTelemetryListener by lazy {
@@ -67,7 +67,7 @@ class MigratingFenixApplication : FenixApplication() {
         super.setupInMainProcessOnly()
 
         // The rest of the migrations can happen now.
-        migrationPushSubscriber.start()
+//        migrationPushSubscriber.start()
         migrationTelemetryListener.start()
         migrator.startMigrationIfNeeded(components.migrationStore, MigrationService::class.java)
     }

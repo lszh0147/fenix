@@ -44,8 +44,8 @@ import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.perf.StorageStatsMetrics
 import org.mozilla.fenix.perf.StartupTimeline
 import org.mozilla.fenix.perf.runBlockingIncrement
-import org.mozilla.fenix.push.PushFxaIntegration
-import org.mozilla.fenix.push.WebPushEngineIntegration
+//import org.mozilla.fenix.push.PushFxaIntegration
+//import org.mozilla.fenix.push.WebPushEngineIntegration
 import org.mozilla.fenix.session.PerformanceActivityLifecycleCallbacks
 import org.mozilla.fenix.session.VisibilityLifecycleCallback
 import org.mozilla.fenix.utils.BrowsersCache
@@ -143,7 +143,7 @@ open class FenixApplication : LocaleAwareApplication(), Provider {
 
         setupLeakCanary()
         startMetricsIfEnabled()
-        setupPush()
+        //setupPush()
 
         visibilityLifecycleCallback = VisibilityLifecycleCallback(getSystemService())
         registerActivityLifecycleCallbacks(visibilityLifecycleCallback)
@@ -250,20 +250,20 @@ open class FenixApplication : LocaleAwareApplication(), Provider {
         // Sets the PushFeature as the singleton instance for push messages to go to.
         // We need the push feature setup here to deliver messages in the case where the service
         // starts up the app first.
-        components.push.feature?.let {
-            Logger.info("AutoPushFeature is configured, initializing it...")
-
-            // Install the AutoPush singleton to receive messages.
-            PushProcessor.install(it)
-
-            WebPushEngineIntegration(components.core.engine, it).start()
-
-            // Perform a one-time initialization of the account manager if a message is received.
-            PushFxaIntegration(it, lazy { components.backgroundServices.accountManager }).launch()
-
-            // Initialize the service. This could potentially be done in a coroutine in the future.
-            it.initialize()
-        }
+//        components.push.feature?.let {
+//            Logger.info("AutoPushFeature is configured, initializing it...")
+//
+//            // Install the AutoPush singleton to receive messages.
+//            PushProcessor.install(it)
+//
+//            WebPushEngineIntegration(components.core.engine, it).start()
+//
+//            // Perform a one-time initialization of the account manager if a message is received.
+//            PushFxaIntegration(it, lazy { components.backgroundServices.accountManager }).launch()
+//
+//            // Initialize the service. This could potentially be done in a coroutine in the future.
+//            it.initialize()
+//        }
     }
 
     private fun setupCrashReporting() {

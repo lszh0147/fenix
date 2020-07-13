@@ -36,13 +36,13 @@ object Versions {
     const val adjust = "4.18.3"
     const val installreferrer = "1.0"
 
-    const val junit = "5.5.2"
+//    const val junit = "5.5.2"
     const val mockk = "1.10.0"
 
     const val mockwebserver = "3.11.0"
     const val uiautomator = "2.2.0"
 
-    const val google_ads_id_version = "16.0.0"
+//    const val google_ads_id_version = "16.0.0"
 
     const val airbnb_lottie = "3.4.0"
 }
@@ -178,7 +178,7 @@ object Deps {
     const val adjust = "com.adjust.sdk:adjust-android:${Versions.adjust}"
     const val installreferrer = "com.android.installreferrer:installreferrer:${Versions.installreferrer}"
 
-    const val junit = "junit:junit:${Versions.junit}"
+//    const val junit = "junit:junit:${Versions.junit}"
     const val mockk = "io.mockk:mockk:${Versions.mockk}"
 
     // --- START AndroidX test dependencies --- //
@@ -187,9 +187,9 @@ object Deps {
     //   https://developer.android.com/jetpack/androidx/releases/test
     // For the full IDs of these test dependencies, see:
     //   https://developer.android.com/training/testing/set-up-project#android-test-dependencies
-    private const val androidx_test_shared_version = "1.3.0-alpha05" // this appears to be shared with many deps.
+//    private const val androidx_test_shared_version = "1.3.0-alpha05" // this appears to be shared with many deps.
 //    const val androidx_test_core = "androidx.test:core:$androidx_test_shared_version"
-    private const val androidx_espresso_version = "3.3.0-alpha05"
+//    private const val androidx_espresso_version = "3.3.0-alpha05"
 //    const val espresso_core = "androidx.test.espresso:espresso-core:$androidx_espresso_version"
 //    const val espresso_contrib = "androidx.test.espresso:espresso-contrib:$androidx_espresso_version"
 //    const val espresso_idling_resources = "androidx.test.espresso:espresso-idling-resource:$androidx_espresso_version"
@@ -207,15 +207,15 @@ object Deps {
 //    const val uiautomator = "androidx.test.uiautomator:uiautomator:${Versions.uiautomator}"
     const val robolectric = "org.robolectric:robolectric:4.3.1"
 
-    const val google_ads_id = "com.google.android.gms:play-services-ads-identifier:${Versions.google_ads_id_version}"
+//    const val google_ads_id = "com.google.android.gms:play-services-ads-identifier:${Versions.google_ads_id_version}"
 
     const val lottie = "com.airbnb.android:lottie:${Versions.airbnb_lottie}"
 
     const val detektApi = "io.gitlab.arturbosch.detekt:detekt-api:${Versions.detekt}"
     const val detektTest = "io.gitlab.arturbosch.detekt:detekt-test:${Versions.detekt}"
-    const val junitApi = "org.junit.jupiter:junit-jupiter-api:${Versions.junit}"
-    const val junitParams = "org.junit.jupiter:junit-jupiter-params:${Versions.junit}"
-    const val junitEngine = "org.junit.jupiter:junit-jupiter-engine:${Versions.junit}"
+//    const val junitApi = "org.junit.jupiter:junit-jupiter-api:${Versions.junit}"
+//    const val junitParams = "org.junit.jupiter:junit-jupiter-params:${Versions.junit}"
+//    const val junitEngine = "org.junit.jupiter:junit-jupiter-engine:${Versions.junit}"
 }
 
 /**

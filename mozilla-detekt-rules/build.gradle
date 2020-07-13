@@ -6,8 +6,8 @@ dependencies {
   testImplementation Deps.detektApi
   testImplementation Deps.detektTest
   implementation Deps.kotlin_stdlib
-  testImplementation Deps.junitApi
-  testImplementation Deps.junitParams
-  testRuntimeOnly Deps.junitEngine
+//  testImplementation Deps.junitApi
+//  testImplementation Deps.junitParams
+//  testRuntimeOnly Deps.junitEngine
 }
 

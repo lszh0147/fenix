@@ -14,7 +14,7 @@ import android.widget.Toast
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+//import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import kotlinx.android.synthetic.main.fragment_about.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.mozilla.fenix.BrowserDirection
@@ -193,8 +193,8 @@ class AboutFragment : Fragment(), AboutPageListener {
     }
 
     private fun openLibrariesPage() {
-        startActivity(Intent(context, OssLicensesMenuActivity::class.java))
-        OssLicensesMenuActivity.setActivityTitle(getString(R.string.open_source_licenses_title, appName))
+//        startActivity(Intent(context, OssLicensesMenuActivity::class.java))
+//        OssLicensesMenuActivity.setActivityTitle(getString(R.string.open_source_licenses_title, appName))
     }
 
     override fun onAboutItemClicked(item: AboutItem) {
@@ -222,8 +222,8 @@ class AboutFragment : Fragment(), AboutPageListener {
                 openLinkInNormalTab(item.url)
             }
             is AboutItem.Libraries -> {
-                requireComponents.analytics.metrics.track(Event.LibrariesThatWeUseTapped)
-                openLibrariesPage()
+//                requireComponents.analytics.metrics.track(Event.LibrariesThatWeUseTapped)
+//                openLibrariesPage()
             }
             is AboutItem.Crashes -> {
                 startActivity(Intent(requireContext(), CrashListActivity::class.java))

@@ -8,7 +8,7 @@ object Versions {
     const val android_gradle_plugin = "3.5.0"
     const val sentry = "1.7.10"
     const val leakcanary = "2.4"
-    const val leanplum = "5.4.0"
+//    const val leanplum = "5.4.0"
 //    const val osslicenses_plugin = "0.9.5"
 //    const val osslicenses_library = "17.0.0"
     const val detekt = "1.6.0"
@@ -148,8 +148,8 @@ object Deps {
     const val sentry = "io.sentry:sentry-android:${Versions.sentry}"
     const val leakcanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanary}"
 
-    const val leanplum_core = "com.leanplum:leanplum-core:${Versions.leanplum}"
-    const val leanplum_fcm = "com.leanplum:leanplum-fcm:${Versions.leanplum}"
+//    const val leanplum_core = "com.leanplum:leanplum-core:${Versions.leanplum}"
+//    const val leanplum_fcm = "com.leanplum:leanplum-fcm:${Versions.leanplum}"
 
     const val androidx_annotation = "androidx.annotation:annotation:${Versions.androidx_annotation}"
     const val androidx_biometric = "androidx.biometric:biometric:${Versions.androidx_biometric}"

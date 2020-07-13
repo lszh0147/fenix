@@ -70,7 +70,7 @@ class DataChoicesFragment : PreferenceFragmentCompat() {
 
         requirePreference<SwitchPreference>(R.string.pref_key_experimentation).apply {
             isChecked = context.settings().isExperimentationEnabled
-            isVisible = Config.channel.isReleaseOrBeta
+            isVisible = false
             onPreferenceChangeListener = SharedPreferenceUpdater()
         }
     }

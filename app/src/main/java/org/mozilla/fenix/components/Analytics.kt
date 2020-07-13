@@ -18,7 +18,7 @@ import org.mozilla.fenix.Config
 import org.mozilla.fenix.HomeActivity
 import org.mozilla.fenix.R
 import org.mozilla.fenix.ReleaseChannel
-import org.mozilla.fenix.components.metrics.AdjustMetricsService
+//import org.mozilla.fenix.components.metrics.AdjustMetricsService
 import org.mozilla.fenix.components.metrics.GleanMetricsService
 //import org.mozilla.fenix.components.metrics.LeanplumMetricsService
 import org.mozilla.fenix.components.metrics.MetricController
@@ -87,9 +87,9 @@ class Analytics(
     val metrics: MetricController by lazy {
         MetricController.create(
             listOf(
-                GleanMetricsService(context),
+                GleanMetricsService(context)
 //                LeanplumMetricsService(context as Application),
-                AdjustMetricsService(context as Application)
+//                AdjustMetricsService(context as Application)
             ),
             isDataTelemetryEnabled = { context.settings().isTelemetryEnabled },
             isMarketingDataTelemetryEnabled = { context.settings().isMarketingTelemetryEnabled }

@@ -258,7 +258,7 @@ class Settings private constructor(
 
     val isExperimentationEnabled by booleanPreference(
         appContext.getPreferenceKey(R.string.pref_key_experimentation),
-        default = true
+        default = false
     )
 
     private var trackingProtectionOnboardingShownThisSession = false

@@ -16,7 +16,7 @@ import mozilla.components.concept.sync.AuthType
 import mozilla.components.concept.sync.DeviceCapability
 import mozilla.components.concept.sync.DeviceType
 import mozilla.components.concept.sync.OAuthAccount
-import mozilla.components.feature.accounts.push.FxaPushSupportFeature
+//import mozilla.components.feature.accounts.push.FxaPushSupportFeature
 import mozilla.components.feature.accounts.push.SendTabFeature
 import mozilla.components.feature.syncedtabs.storage.SyncedTabsStorage
 import mozilla.components.lib.crash.CrashReporter
@@ -48,7 +48,7 @@ import org.mozilla.fenix.utils.RunWhenReadyQueue
 @Mockable
 class BackgroundServices(
     private val context: Context,
-    private val push: Push,
+//    private val push: Push,
     crashReporter: CrashReporter,
     historyStorage: Lazy<PlacesHistoryStorage>,
     bookmarkStorage: Lazy<PlacesBookmarksStorage>,
@@ -151,9 +151,9 @@ class BackgroundServices(
         accountManager.register(accountAbnormalities)
 
         // Enable push if it's configured.
-        push.feature?.let { autoPushFeature ->
-            FxaPushSupportFeature(context, accountManager, autoPushFeature)
-        }
+//        push.feature?.let { autoPushFeature ->
+//            FxaPushSupportFeature(context, accountManager, autoPushFeature)
+//        }
 
         SendTabFeature(accountManager) { device, tabs ->
             notificationManager.showReceivedTabs(context, device, tabs)

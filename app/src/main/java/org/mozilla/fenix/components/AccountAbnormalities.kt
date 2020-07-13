@@ -116,9 +116,9 @@ class AccountAbnormalities(
 
                 logger.warn("Missing expected account on startup")
 
-                crashReporter.submitCaughtException(
-                    AbnormalFxaEvent.MissingExpectedAccountAfterStartup()
-                )
+//                crashReporter.submitCaughtException(
+//                    AbnormalFxaEvent.MissingExpectedAccountAfterStartup()
+//                )
             }
         }
     }
@@ -132,9 +132,9 @@ class AccountAbnormalities(
         }
 
         // Expecting to have seen an onAuthenticated callback before a logout can be triggered.
-        if (!onAuthenticatedCalled) {
-            crashReporter.submitCaughtException(AbnormalFxaEvent.LogoutWithoutAuth())
-        }
+//        if (!onAuthenticatedCalled) {
+//            crashReporter.submitCaughtException(AbnormalFxaEvent.LogoutWithoutAuth())
+//        }
 
         // If we're not already in the process of logging out, do nothing.
         synchronized(this) {
@@ -148,7 +148,7 @@ class AccountAbnormalities(
 
         // Otherwise, this is an unexpected logout request - there shouldn't be a legitimate way for
         // the user to request multiple overlapping logouts. Log an exception.
-        crashReporter.submitCaughtException(AbnormalFxaEvent.OverlappingFxaLogoutRequest())
+//        crashReporter.submitCaughtException(AbnormalFxaEvent.OverlappingFxaLogoutRequest())
     }
 
     override fun onAuthenticated(account: OAuthAccount, authType: AuthType) {
@@ -180,6 +180,6 @@ class AccountAbnormalities(
 
         // Otherwise, this is an unexpected logout event - all logout events are expected to be
         // user-triggered. Log an exception.
-        crashReporter.submitCaughtException(AbnormalFxaEvent.UnexpectedFxaLogout())
+//        crashReporter.submitCaughtException(AbnormalFxaEvent.UnexpectedFxaLogout())
     }
 }

@@ -204,29 +204,29 @@ android {
 
     flavorDimensions "engine"
 
-    sourceSets {
+//    sourceSets {
 //        androidTest {
 //            resources.srcDirs += ['src/androidTest/resources']
 //        }
-        fennecNightly {
-            java.srcDirs = ['src/migration/java']
-            manifest.srcFile "src/migration/AndroidManifest.xml"
-        }
-        fennecBeta {
-            java.srcDirs = ['src/migration/java']
-            manifest.srcFile "src/migration/AndroidManifest.xml"
-        }
-        fennecProduction {
-            java.srcDirs = ['src/migration/java']
-            manifest.srcFile "src/migration/AndroidManifest.xml"
-        }
-        forPerformanceTest {
-            // We want our performance test builds to use the same code as our "fennec" flavor builds
-            // since those builds will ship to our large user base.
-            java.srcDirs = ['src/migration/java']
-            manifest.srcFile "src/migration/AndroidManifest.xml"
-        }
-    }
+//        fennecNightly {
+//            java.srcDirs = ['src/migration/java']
+//            manifest.srcFile "src/migration/AndroidManifest.xml"
+//        }
+//        fennecBeta {
+//            java.srcDirs = ['src/migration/java']
+//            manifest.srcFile "src/migration/AndroidManifest.xml"
+//        }
+//        fennecProduction {
+//            java.srcDirs = ['src/migration/java']
+//            manifest.srcFile "src/migration/AndroidManifest.xml"
+//        }
+//        forPerformanceTest {
+//            // We want our performance test builds to use the same code as our "fennec" flavor builds
+//            // since those builds will ship to our large user base.
+//            java.srcDirs = ['src/migration/java']
+//            manifest.srcFile "src/migration/AndroidManifest.xml"
+//        }
+//    }
 
     productFlavors {
         geckoNightly {

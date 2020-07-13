@@ -461,7 +461,7 @@ dependencies {
     implementation Deps.leanplum_fcm
 
     implementation Deps.mozilla_concept_engine
-    implementation Deps.mozilla_concept_push
+//    implementation Deps.mozilla_concept_push
     implementation Deps.mozilla_concept_storage
     implementation Deps.mozilla_concept_sync
     implementation Deps.mozilla_concept_toolbar
@@ -492,7 +492,7 @@ dependencies {
     implementation Deps.mozilla_feature_intent
     implementation Deps.mozilla_feature_media
     implementation Deps.mozilla_feature_prompts
-    implementation Deps.mozilla_feature_push
+//    implementation Deps.mozilla_feature_push
     implementation Deps.mozilla_feature_privatemode
     implementation Deps.mozilla_feature_pwa
     implementation Deps.mozilla_feature_qr

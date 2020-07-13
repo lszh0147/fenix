@@ -61,7 +61,7 @@ object Deps {
 //    const val osslicenses_library = "com.google.android.gms:play-services-oss-licenses:${Versions.osslicenses_library}"
 
     const val mozilla_concept_engine = "org.mozilla.components:concept-engine:${Versions.mozilla_android_components}"
-    const val mozilla_concept_push = "org.mozilla.components:concept-push:${Versions.mozilla_android_components}"
+//    const val mozilla_concept_push = "org.mozilla.components:concept-push:${Versions.mozilla_android_components}"
     const val mozilla_concept_tabstray = "org.mozilla.components:concept-tabstray:${Versions.mozilla_android_components}"
     const val mozilla_concept_toolbar = "org.mozilla.components:concept-toolbar:${Versions.mozilla_android_components}"
     const val mozilla_concept_storage = "org.mozilla.components:concept-storage:${Versions.mozilla_android_components}"
@@ -101,7 +101,7 @@ object Deps {
     const val mozilla_feature_downloads = "org.mozilla.components:feature-downloads:${Versions.mozilla_android_components}"
     const val mozilla_feature_storage = "org.mozilla.components:feature-storage:${Versions.mozilla_android_components}"
     const val mozilla_feature_prompts = "org.mozilla.components:feature-prompts:${Versions.mozilla_android_components}"
-    const val mozilla_feature_push = "org.mozilla.components:feature-push:${Versions.mozilla_android_components}"
+//    const val mozilla_feature_push = "org.mozilla.components:feature-push:${Versions.mozilla_android_components}"
     const val mozilla_feature_privatemode = "org.mozilla.components:feature-privatemode:${Versions.mozilla_android_components}"
     const val mozilla_feature_pwa = "org.mozilla.components:feature-pwa:${Versions.mozilla_android_components}"
     const val mozilla_feature_toolbar = "org.mozilla.components:feature-toolbar:${Versions.mozilla_android_components}"

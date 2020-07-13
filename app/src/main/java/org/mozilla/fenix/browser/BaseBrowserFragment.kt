@@ -415,7 +415,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Session
             pipFeature = PictureInPictureFeature(
                 store = store,
                 activity = requireActivity(),
-                crashReporting = context.components.analytics.crashReporter,
+                crashReporting = null,
                 tabId = customTabSessionId
             )
 

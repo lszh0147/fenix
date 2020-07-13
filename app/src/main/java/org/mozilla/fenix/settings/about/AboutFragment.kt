@@ -177,8 +177,8 @@ class AboutFragment : Fragment(), AboutPageListener {
     }
 
     private fun openLibrariesPage() {
-        val navController = findNavController()
-        navController.navigate(R.id.action_aboutFragment_to_aboutLibrariesFragment)
+        //val navController = findNavController()
+        //navController.navigate(R.id.action_aboutFragment_to_aboutLibrariesFragment)
     }
 
     override fun onAboutItemClicked(item: AboutItem) {
@@ -201,7 +201,7 @@ class AboutFragment : Fragment(), AboutPageListener {
                 openLinkInNormalTab(item.url)
             }
             is AboutItem.Libraries -> {
-                openLibrariesPage()
+                //openLibrariesPage()
             }
             is AboutItem.Crashes -> {
                 startActivity(Intent(requireContext(), CrashListActivity::class.java))

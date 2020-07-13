@@ -14,8 +14,8 @@ object Versions {
     const val sentry = "1.7.10"
     const val leakcanary = "2.4"
     const val leanplum = "5.4.0"
-    const val osslicenses_plugin = "0.9.5"
-    const val detekt = "1.9.1"
+   // const val osslicenses_plugin = "0.9.5"
+   // const val detekt = "1.9.1"
     const val jna = "5.6.0"
 
     const val androidx_appcompat = "1.2.0"
@@ -64,7 +64,7 @@ object Deps {
     const val kotlin_coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
 
     const val allopen = "org.jetbrains.kotlin:kotlin-allopen:${Versions.kotlin}"
-    const val osslicenses_plugin = "com.google.android.gms:oss-licenses-plugin:${Versions.osslicenses_plugin}"
+    //const val osslicenses_plugin = "com.google.android.gms:oss-licenses-plugin:${Versions.osslicenses_plugin}"
 
     const val mozilla_concept_base = "org.mozilla.components:concept-base:${Versions.mozilla_android_components}"
     const val mozilla_concept_engine = "org.mozilla.components:concept-engine:${Versions.mozilla_android_components}"

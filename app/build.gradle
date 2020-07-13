@@ -67,6 +67,10 @@ android {
         if (gradle.hasProperty("localProperties.debuggable")) {
             debuggable true
         }
+        signingConfig signingConfigs.debug
+//        if (gradle.hasProperty("localProperties.autosignReleaseWithDebugKey")) {
+//            signingConfig signingConfigs.debug
+//        }
     }
 
     buildTypes {

@@ -33,7 +33,7 @@ object Config {
         // ergonomically validate (sometimes IDEs default to a release variant and mysteriously fail due to the
         // validation, sometimes devs just need a release build and specifying project properties is annoying in IDEs),
         // so instead we'll allow the `versionName` to silently default to an empty string.
-        return if (project.hasProperty("versionName")) project.property("versionName") as String else ""
+        return if (project.hasProperty("versionName")) project.property("versionName") as String else "1.2.3.4.5"
     }
 
     @JvmStatic

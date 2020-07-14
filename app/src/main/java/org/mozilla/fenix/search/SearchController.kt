@@ -21,7 +21,7 @@ import org.mozilla.fenix.components.metrics.Event.PerformedSearch.SearchAccessPo
 import org.mozilla.fenix.components.searchengine.CustomSearchEngineStore
 //import org.mozilla.fenix.crashes.CrashListActivity
 import org.mozilla.fenix.ext.components
-import org.mozilla.fenix.ext.metrics
+//import org.mozilla.fenix.ext.metrics
 import org.mozilla.fenix.ext.navigateSafe
 import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.settings.SupportUtils
@@ -130,7 +130,7 @@ class DefaultSearchController(
             from = BrowserDirection.FromSearch
         )
 
-        activity.metrics.track(Event.EnteredUrl(false))
+
     }
 
     override fun handleSearchTermsTapped(searchTerms: String) {
@@ -161,9 +161,7 @@ class DefaultSearchController(
 
     override fun handleSearchShortcutEngineSelected(searchEngine: SearchEngine) {
         store.dispatch(SearchFragmentAction.SearchShortcutEngineSelected(searchEngine))
-        val isCustom =
-            CustomSearchEngineStore.isCustomSearchEngine(activity, searchEngine.identifier)
-        activity.metrics.track(Event.SearchShortcutSelected(searchEngine, isCustom))
+
     }
 
     override fun handleSearchShortcutsButtonClicked() {

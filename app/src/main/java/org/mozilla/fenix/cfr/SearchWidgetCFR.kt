@@ -63,13 +63,11 @@ class SearchWidgetCFR(
         }
 
         layout.cfr_neg_button.setOnClickListener {
-            context.components.analytics.metrics.track(Event.SearchWidgetCFRNotNowPressed)
             searchWidgetCFRDialog.dismiss()
             context.settings().manuallyDismissSearchWidgetCFR()
         }
 
         layout.cfr_pos_button.setOnClickListener {
-            context.components.analytics.metrics.track(Event.SearchWidgetCFRAddWidgetPressed)
             SearchWidgetCreator.createSearchWidget(context)
             searchWidgetCFRDialog.dismiss()
             context.settings().manuallyDismissSearchWidgetCFR()
@@ -90,7 +88,6 @@ class SearchWidgetCFR(
 
         searchWidgetCFRDialog.setOnCancelListener {
             isShown = false
-            context.components.analytics.metrics.track(Event.SearchWidgetCFRCanceled)
         }
 
         searchWidgetCFRDialog.setOnDismissListener {
@@ -99,7 +96,6 @@ class SearchWidgetCFR(
         }
 
         searchWidgetCFRDialog.show()
-        context.components.analytics.metrics.track(Event.SearchWidgetCFRDisplayed)
     }
 
     companion object {

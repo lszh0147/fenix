@@ -101,7 +101,6 @@ class DefaultCollectionCreationController(
         ioScope.launch {
             tabCollectionStorage.renameCollection(collection, name)
         }
-        metrics.track(Event.CollectionRenamed)
     }
 
     override fun backPressed(fromStep: SaveCollectionStep) {

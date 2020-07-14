@@ -109,7 +109,6 @@ class CollectionCreationView(
     }
 
     private fun updateForSelectTabs(state: CollectionCreationState) {
-        containerView.context.components.analytics.metrics.track(Event.CollectionTabSelectOpened)
 
         tab_list.isClickable = true
 

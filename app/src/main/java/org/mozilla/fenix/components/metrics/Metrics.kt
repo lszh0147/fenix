@@ -636,55 +636,55 @@ private class ReleaseMetricController(
     private var initialized = mutableSetOf<MetricServiceType>()
 
     init {
-        Facts.registerProcessor(object : FactProcessor {
-            override fun process(fact: Fact) {
-                fact.toEvent()?.also {
-                    track(it)
-                }
-            }
-        })
+//        Facts.registerProcessor(object : FactProcessor {
+//            override fun process(fact: Fact) {
+//                fact.toEvent()?.also {
+//                    track(it)
+//                }
+//            }
+//        })
     }
 
     override fun start(type: MetricServiceType) {
-        val isEnabled = isTelemetryEnabled(type)
-        val isInitialized = isInitialized(type)
-        if (!isEnabled || isInitialized) {
-            return
-        }
-
-        services
-            .filter { it.type == type }
-            .forEach { it.start() }
-
-        initialized.add(type)
+//        val isEnabled = isTelemetryEnabled(type)
+//        val isInitialized = isInitialized(type)
+//        if (!isEnabled || isInitialized) {
+//            return
+//        }
+//
+//        services
+//            .filter { it.type == type }
+//            .forEach { it.start() }
+//
+//        initialized.add(type)
     }
 
     override fun stop(type: MetricServiceType) {
-        val isEnabled = isTelemetryEnabled(type)
-        val isInitialized = isInitialized(type)
-        if (isEnabled || !isInitialized) {
-            return
-        }
-
-        services
-            .filter { it.type == type }
-            .forEach { it.stop() }
-
-        initialized.remove(type)
+//        val isEnabled = isTelemetryEnabled(type)
+//        val isInitialized = isInitialized(type)
+//        if (isEnabled || !isInitialized) {
+//            return
+//        }
+//
+//        services
+//            .filter { it.type == type }
+//            .forEach { it.stop() }
+//
+//        initialized.remove(type)
     }
 
     override fun track(event: Event) {
-        services
-            .filter { it.shouldTrack(event) }
-            .forEach {
-                val isEnabled = isTelemetryEnabled(it.type)
-                val isInitialized = isInitialized(it.type)
-                if (!isEnabled || !isInitialized) {
-                    return
-                }
-
-                it.track(event)
-            }
+//        services
+//            .filter { it.shouldTrack(event) }
+//            .forEach {
+//                val isEnabled = isTelemetryEnabled(it.type)
+//                val isInitialized = isInitialized(it.type)
+//                if (!isEnabled || !isInitialized) {
+//                    return
+//                }
+//
+//                it.track(event)
+//            }
     }
 
     private fun isInitialized(type: MetricServiceType): Boolean = initialized.contains(type)

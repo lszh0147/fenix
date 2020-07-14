@@ -50,7 +50,6 @@ class OnboardingAutomaticSignInViewHolder(
     @VisibleForTesting
     internal suspend fun onClick(button: Button) {
         val context = button.context
-        context.components.analytics.metrics.track(Event.OnboardingAutoSignIn)
 
         button.text = context.getString(R.string.onboarding_firefox_account_signing_in)
         button.isEnabled = false

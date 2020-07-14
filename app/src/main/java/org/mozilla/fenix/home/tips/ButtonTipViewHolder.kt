@@ -27,7 +27,6 @@ class ButtonTipViewHolder(
         this.tip = tip
 
         view.apply {
-            context.components.analytics.metrics.track(Event.TipDisplayed(tip.identifier))
 
             tip_header_text.text = tip.title
             tip_description_text.text = tip.description
@@ -60,7 +59,6 @@ class ButtonTipViewHolder(
             }
 
             tip_close.setOnClickListener {
-                context.components.analytics.metrics.track(Event.TipClosed(tip.identifier))
 
                 context.settings().preferences
                     .edit()

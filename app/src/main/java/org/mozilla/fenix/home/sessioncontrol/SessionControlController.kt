@@ -152,7 +152,6 @@ class DefaultSessionControlController(
         get() = activity.components.core.topSiteStorage
 
     override fun handleCollectionAddTabTapped(collection: TabCollection) {
-        metrics.track(Event.CollectionAddTabPressed)
         showCollectionCreationFragment(
             step = SaveCollectionStep.SelectTabs,
             selectedTabCollectionId = collection.id
@@ -176,7 +175,6 @@ class DefaultSessionControlController(
             }
         )
 
-        metrics.track(Event.CollectionTabRestored)
     }
 
     override fun handleCollectionOpenTabsTapped(collection: TabCollection) {
@@ -190,11 +188,9 @@ class DefaultSessionControlController(
         )
 
         showTabTray()
-        metrics.track(Event.CollectionAllTabsRestored)
     }
 
     override fun handleCollectionRemoveTab(collection: TabCollection, tab: ComponentTab) {
-        metrics.track(Event.CollectionTabRemoved)
 
         if (collection.tabs.size == 1) {
             val title = activity.resources.getString(R.string.delete_tab_and_collection_dialog_title, collection.title)
@@ -209,7 +205,6 @@ class DefaultSessionControlController(
 
     override fun handleCollectionShareTabsClicked(collection: TabCollection) {
         showShareFragment(collection.tabs.map { ShareData(url = it.url, title = it.title) })
-        metrics.track(Event.CollectionShared)
     }
 
     override fun handleDeleteCollectionTapped(collection: TabCollection) {
@@ -218,7 +213,6 @@ class DefaultSessionControlController(
     }
 
     override fun handleOpenInPrivateTabClicked(topSite: TopSite) {
-        metrics.track(Event.TopSiteOpenInPrivateTab)
         with(activity) {
             browsingModeManager.mode = BrowsingMode.Private
             openToBrowserAndLoad(
@@ -239,9 +233,7 @@ class DefaultSessionControlController(
     }
 
     override fun handleRemoveTopSiteClicked(topSite: TopSite) {
-        metrics.track(Event.TopSiteRemoved)
         if (topSite.url == SupportUtils.POCKET_TRENDING_URL) {
-            metrics.track(Event.PocketTopSiteRemoved)
         }
 
         viewLifecycleScope.launch(Dispatchers.IO) {
@@ -254,13 +246,9 @@ class DefaultSessionControlController(
             step = SaveCollectionStep.RenameCollection,
             selectedTabCollectionId = collection.id
         )
-        metrics.track(Event.CollectionRenamePressed)
     }
 
     override fun handleSelectTopSite(url: String, isDefault: Boolean) {
-        metrics.track(Event.TopSiteOpenInNewTab)
-        if (isDefault) { metrics.track(Event.TopSiteOpenDefault) }
-        if (url == SupportUtils.POCKET_TRENDING_URL) { metrics.track(Event.PocketTopSiteClicked) }
         activity.components.useCases.tabsUseCases.addTab.invoke(
             url = url,
             selectTab = true,

@@ -20,7 +20,6 @@ class OnboardingFinishViewHolder(
     init {
         view.finish_button.setOnClickListener {
             interactor.onStartBrowsingClicked()
-            it.context.components.analytics.metrics.track(Event.OnboardingFinish)
         }
     }
 

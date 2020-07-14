@@ -26,19 +26,15 @@ class StartSearchIntentProcessor(
         return if (event != null) {
             when (event) {
                 SEARCH_WIDGET -> {
-                    metrics.track(Event.SearchWidgetNewTabPressed)
                     source = Event.PerformedSearch.SearchAccessPoint.WIDGET
                 }
                 STATIC_SHORTCUT_NEW_TAB -> {
-                    metrics.track(Event.PrivateBrowsingStaticShortcutTab)
                     source = Event.PerformedSearch.SearchAccessPoint.SHORTCUT
                 }
                 STATIC_SHORTCUT_NEW_PRIVATE_TAB -> {
-                    metrics.track(Event.PrivateBrowsingStaticShortcutPrivateTab)
                     source = Event.PerformedSearch.SearchAccessPoint.SHORTCUT
                 }
                 PRIVATE_BROWSING_PINNED_SHORTCUT -> {
-                    metrics.track(Event.PrivateBrowsingPinnedShortcutPrivateTab)
                     source = Event.PerformedSearch.SearchAccessPoint.SHORTCUT
                 }
             }

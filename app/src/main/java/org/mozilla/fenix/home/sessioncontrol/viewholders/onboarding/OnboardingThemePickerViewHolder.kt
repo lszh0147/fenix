@@ -40,12 +40,10 @@ class OnboardingThemePickerViewHolder(view: View) : RecyclerView.ViewHolder(view
         radioDarkTheme.addIllustration(view.theme_dark_image)
 
         view.theme_dark_image.setOnClickListener {
-            it.context.components.analytics.metrics.track(Event.OnboardingThemePicker(Theme.DARK))
             radioDarkTheme.performClick()
         }
 
         view.theme_light_image.setOnClickListener {
-            it.context.components.analytics.metrics.track(Event.OnboardingThemePicker(Theme.LIGHT))
             radioLightTheme.performClick()
         }
 

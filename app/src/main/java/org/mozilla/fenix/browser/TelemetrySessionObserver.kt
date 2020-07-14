@@ -27,7 +27,6 @@ class TelemetrySessionObserver(
             urlLoading = session.url
         } else if (urlLoading != null && !session.private && temporaryFix.shouldSendEvent(session.url)) {
             temporaryFix.eventSentFor = session.url
-            metrics.track(Event.UriOpened)
         }
     }
 

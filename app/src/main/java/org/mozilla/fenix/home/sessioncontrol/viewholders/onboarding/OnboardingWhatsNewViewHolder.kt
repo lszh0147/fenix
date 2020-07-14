@@ -33,7 +33,6 @@ class OnboardingWhatsNewViewHolder(
         view.get_answers.text = textWithLink
         view.get_answers.setOnClickListener {
             interactor.onWhatsNewGetAnswersClicked()
-            view.context.components.analytics.metrics.track(Event.OnboardingWhatsNew)
         }
     }
 

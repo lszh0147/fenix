@@ -22,7 +22,6 @@ class OnboardingManualSignInViewHolder(view: View) : RecyclerView.ViewHolder(vie
 
     init {
         view.turn_on_sync_button.setOnClickListener {
-            it.context.components.analytics.metrics.track(Event.OnboardingManualSignIn)
 
             val directions = HomeFragmentDirections.actionGlobalTurnOnSync()
             Navigation.findNavController(view).navigate(directions)

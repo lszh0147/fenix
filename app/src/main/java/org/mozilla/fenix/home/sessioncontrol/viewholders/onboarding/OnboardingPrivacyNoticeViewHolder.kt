@@ -24,7 +24,6 @@ class OnboardingPrivacyNoticeViewHolder(
         view.description_text.text = view.context.getString(R.string.onboarding_privacy_notice_description, appName)
 
         view.read_button.setOnClickListener {
-            it.context.components.analytics.metrics.track(Event.OnboardingPrivacyNotice)
             interactor.onReadPrivacyNoticeClicked()
         }
     }

@@ -49,7 +49,6 @@ class OnboardingPrivateBrowsingViewHolder(
         view.description_text_once.text = text
         view.description_text_once.contentDescription = String.format(text.toString(), view.header_text.text)
         view.open_settings_button.setOnClickListener {
-            it.context.components.analytics.metrics.track(Event.OnboardingPrivateBrowsing)
             interactor.onOpenSettingsClicked()
         }
     }

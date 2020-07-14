@@ -163,7 +163,6 @@ class HomeFragment : Fragment() {
         postponeEnterTransition()
         lifecycleScope.launch(IO) {
             if (!onboarding.userHasBeenOnboarded()) {
-                requireComponents.analytics.metrics.track(Event.OpenedAppFirstRun)
             }
         }
     }
@@ -345,7 +344,6 @@ class HomeFragment : Fragment() {
         view.toolbar_wrapper.setOnClickListener {
             hideOnboardingIfNeeded()
             navigateToSearch()
-            requireComponents.analytics.metrics.track(Event.SearchBarTapped(Event.SearchBarTapped.Source.HOME))
         }
 
         view.tab_button.setOnClickListener {
@@ -476,7 +474,6 @@ class HomeFragment : Fragment() {
             setPositiveButton(R.string.tab_collection_dialog_positive) { dialog: DialogInterface, _ ->
                 viewLifecycleOwner.lifecycleScope.launch(IO) {
                     context.components.core.tabCollectionStorage.removeCollection(tabCollection)
-                    context.components.analytics.metrics.track(Event.CollectionRemoved)
                 }.invokeOnCompletion {
                     dialog.dismiss()
                 }
@@ -566,14 +563,12 @@ class HomeFragment : Fragment() {
                 )
             layout.findViewById<Button>(R.id.cfr_pos_button).apply {
                 setOnClickListener {
-                    context.metrics.track(Event.PrivateBrowsingAddShortcutCFR)
                     PrivateShortcutCreateManager.createPrivateShortcut(context)
                     privateBrowsingRecommend.dismiss()
                 }
             }
             layout.findViewById<Button>(R.id.cfr_neg_button).apply {
                 setOnClickListener {
-                    context.metrics.track(Event.PrivateBrowsingCancelCFR)
                     privateBrowsingRecommend.dismiss()
                 }
             }
@@ -706,7 +701,6 @@ class HomeFragment : Fragment() {
                     HomeMenu.Item.WhatsNew -> {
                         hideOnboardingIfNeeded()
                         WhatsNew.userViewedWhatsNew(context)
-                        context.metrics.track(Event.WhatsNewTapped)
                         (activity as HomeActivity).openToBrowserAndLoad(
                             searchTermOrURL = SupportUtils.getWhatsNewUrl(context),
                             newTab = true,

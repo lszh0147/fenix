@@ -97,9 +97,7 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
                         components.core.store,
                         view.readerViewControlsBar
                     ) { available, active ->
-                        if (available) {
-                            components.analytics.metrics.track(Event.ReaderModeAvailable)
-                        }
+
 
                         readerModeAvailable = available
                         readerModeAction.setSelected(active)

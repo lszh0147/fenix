@@ -85,17 +85,17 @@ class HomeMenu(
     }
 
     private val coreMenuItems by lazy {
-        val whatsNewItem = BrowserMenuHighlightableItem(
-            context.getString(R.string.browser_menu_whats_new),
-            R.drawable.ic_whats_new,
-            iconTintColorResource = primaryTextColor,
-            highlight = BrowserMenuHighlight.LowPriority(
-                notificationTint = getColor(context, R.color.whats_new_notification_color)
-            ),
-            isHighlighted = { WhatsNew.shouldHighlightWhatsNew(context) }
-        ) {
-            onItemTapped.invoke(Item.WhatsNew)
-        }
+//        val whatsNewItem = BrowserMenuHighlightableItem(
+//            context.getString(R.string.browser_menu_whats_new),
+//            R.drawable.ic_whats_new,
+//            iconTintColorResource = primaryTextColor,
+//            highlight = BrowserMenuHighlight.LowPriority(
+//                notificationTint = getColor(context, R.color.whats_new_notification_color)
+//            ),
+//            isHighlighted = { WhatsNew.shouldHighlightWhatsNew(context) }
+//        ) {
+//            onItemTapped.invoke(Item.WhatsNew)
+//        }
 
         val bookmarksItem = BrowserMenuImageText(
             context.getString(R.string.library_bookmarks),
@@ -137,13 +137,13 @@ class HomeMenu(
             onItemTapped.invoke(Item.SyncedTabs)
         }
 
-        val helpItem = BrowserMenuImageText(
-            context.getString(R.string.browser_menu_help),
-            R.drawable.ic_help,
-            primaryTextColor
-        ) {
-            onItemTapped.invoke(Item.Help)
-        }
+//        val helpItem = BrowserMenuImageText(
+//            context.getString(R.string.browser_menu_help),
+//            R.drawable.ic_help,
+//            primaryTextColor
+//        ) {
+//            onItemTapped.invoke(Item.Help)
+//        }
 
         // Only query account manager if it has been initialized.
         // We don't want to cause its initialization just for this check.
@@ -156,8 +156,8 @@ class HomeMenu(
         if (shouldUseBottomToolbar) {
             listOfNotNull(
                 accountAuthItem,
-                helpItem,
-                whatsNewItem,
+//                helpItem,
+//                whatsNewItem,
                 BrowserMenuDivider(),
                 addons,
                 BrowserMenuDivider(),
@@ -181,8 +181,8 @@ class HomeMenu(
                 BrowserMenuDivider(),
                 addons,
                 BrowserMenuDivider(),
-                whatsNewItem,
-                helpItem,
+//                whatsNewItem,
+//                helpItem,
                 accountAuthItem
             ).also { items ->
                 items.getHighlight()?.let { onHighlightPresent(it) }

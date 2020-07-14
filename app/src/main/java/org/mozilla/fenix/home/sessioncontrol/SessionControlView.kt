@@ -36,10 +36,13 @@ private fun normalModeAdapterItems(
         items.add(AdapterItem.TopSiteList(topSites))
     }
 
-    if (collections.isEmpty()) {
-        items.add(AdapterItem.CollectionHeader)
-        items.add(AdapterItem.NoCollectionsMessage)
-    } else {
+//    if (collections.isEmpty()) {
+//        items.add(AdapterItem.CollectionHeader)
+//        items.add(AdapterItem.NoCollectionsMessage)
+//    } else {
+//        showCollections(collections, expandedCollections, items)
+//    }
+    if (collections.isNotEmpty()){
         showCollections(collections, expandedCollections, items)
     }
 

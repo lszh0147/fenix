@@ -24,7 +24,6 @@ class FenixOnboarding(context: Context) : PreferencesHolder {
 
     fun finish() {
         onboardedVersion = CURRENT_ONBOARDING_VERSION
-        metrics.track(Event.DismissedOnboarding)
     }
 
     fun userHasBeenOnboarded() = onboardedVersion == CURRENT_ONBOARDING_VERSION

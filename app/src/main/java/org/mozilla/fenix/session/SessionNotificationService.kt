@@ -50,7 +50,6 @@ class SessionNotificationService : Service() {
             }
 
             ACTION_ERASE -> {
-                metrics.track(Event.PrivateBrowsingNotificationTapped)
 
                 val homeScreenIntent = Intent(this, HomeActivity::class.java)
                 val intentFlags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

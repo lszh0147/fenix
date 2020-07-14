@@ -297,7 +297,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Session
             }
 
             browserToolbarView.view.display.setOnTrackingProtectionClickedListener {
-                context.metrics.track(Event.TrackingProtectionIconPressed)
                 showTrackingProtectionPanel()
             }
 
@@ -920,7 +919,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Session
             )
 
             withContext(Main) {
-                requireComponents.analytics.metrics.track(Event.AddBookmark)
 
                 view?.let { view ->
                     FenixSnackbar.make(

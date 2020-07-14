@@ -99,7 +99,6 @@ class SearchFragment : Fragment(), UserInteractionHandler {
 
         val isPrivate = activity.browsingModeManager.mode.isPrivate
 
-        requireComponents.analytics.metrics.track(Event.InteractWithSearchURLArea)
 
         val areShortcutsAvailable = areShortcutsAvailable()
         searchStore = StoreProvider.get(this) {
@@ -194,7 +193,6 @@ class SearchFragment : Fragment(), UserInteractionHandler {
         // around such a small edge case, we make the button have no functionality in this case.
         if (!speechIsAvailable()) { return }
 
-        requireComponents.analytics.metrics.track(Event.VoiceSearchTapped)
         speechIntent.apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
             putExtra(RecognizerIntent.EXTRA_PROMPT, requireContext().getString(R.string.voice_search_explainer))
@@ -232,11 +230,9 @@ class SearchFragment : Fragment(), UserInteractionHandler {
                             )
                             setMessage(spannable)
                             setNegativeButton(R.string.qr_scanner_dialog_negative) { dialog: DialogInterface, _ ->
-                                requireComponents.analytics.metrics.track(Event.QRScannerNavigationDenied)
                                 dialog.cancel()
                             }
                             setPositiveButton(R.string.qr_scanner_dialog_positive) { dialog: DialogInterface, _ ->
-                                requireComponents.analytics.metrics.track(Event.QRScannerNavigationAllowed)
                                 (activity as HomeActivity)
                                     .openToBrowserAndLoad(
                                         searchTermOrURL = result,
@@ -247,7 +243,6 @@ class SearchFragment : Fragment(), UserInteractionHandler {
                             }
                             create()
                         }.show()
-                        requireComponents.analytics.metrics.track(Event.QRScannerPromptDisplayed)
                     }
                 }),
             owner = this,
@@ -256,7 +251,6 @@ class SearchFragment : Fragment(), UserInteractionHandler {
 
         view.search_scan_button.setOnClickListener {
             toolbarView.view.clearFocus()
-            requireComponents.analytics.metrics.track(Event.QRScannerOpened)
             qrFeature.get()?.scan(R.id.container)
         }
 
@@ -282,7 +276,6 @@ class SearchFragment : Fragment(), UserInteractionHandler {
                 context?.settings()?.showSearchSuggestionsInPrivateOnboardingFinished = true
                 searchStore.dispatch(SearchFragmentAction.SetShowSearchSuggestions(true))
                 searchStore.dispatch(SearchFragmentAction.AllowSearchSuggestionsInPrivateModePrompt(false))
-                requireComponents.analytics.metrics.track(Event.PrivateBrowsingShowSearchSuggestions)
             }
 
             inflated.dismiss.setOnClickListener {

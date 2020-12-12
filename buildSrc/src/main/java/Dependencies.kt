@@ -15,7 +15,7 @@ object Versions {
     const val leakcanary = "2.4"
     const val leanplum = "5.4.0"
    // const val osslicenses_plugin = "0.9.5"
-   // const val detekt = "1.9.1"
+    const val detekt = "1.9.1"
     const val jna = "5.6.0"
 
     const val androidx_appcompat = "1.2.0"

@@ -38,69 +38,69 @@ class AboutLibrariesFragment : Fragment(R.layout.fragment_about_libraries) {
         val appName = getString(R.string.app_name)
         showToolbar(getString(R.string.open_source_licenses_title, appName))
 
-        setupLibrariesListView(view.about_libraries_listview)
+//        setupLibrariesListView(view.about_libraries_listview)
     }
 
-    private fun setupLibrariesListView(listView: ListView) {
-        val libraries = parseLibraries()
-        listView.adapter = ArrayAdapter(
-            listView.context,
-            android.R.layout.simple_list_item_1,
-            libraries
-        )
-        listView.setOnItemClickListener { _, _, position, _ ->
-            showLicenseDialog(libraries[position])
-        }
-    }
+//    private fun setupLibrariesListView(listView: ListView) {
+//        val libraries = parseLibraries()
+//        listView.adapter = ArrayAdapter(
+//            listView.context,
+//            android.R.layout.simple_list_item_1,
+//            libraries
+//        )
+//        listView.setOnItemClickListener { _, _, position, _ ->
+//            showLicenseDialog(libraries[position])
+//        }
+//    }
 
-    private fun parseLibraries(): List<LibraryItem> {
-        /*
-            The gradle plugin "oss-licenses-plugin" creates two "raw" resources:
+//    private fun parseLibraries(): List<LibraryItem> {
+//        /*
+//            The gradle plugin "oss-licenses-plugin" creates two "raw" resources:
+//
+//               - third_party_licenses which is the binary concatenation of all the licenses text for
+//                 all the libraries. License texts can either be an URL to a license file or just the
+//                 raw text of the license.
+//
+//               - third_party_licenses_metadata which contains one dependency per line formatted in
+//                 the following way: "[start_offset]:[length] [name]"
+//
+//                 [start_offset]     : first byte in third_party_licenses that contains the license
+//                                      text for this library.
+//                 [length]           : length of the license text for this library in
+//                                      third_party_licenses.
+//                 [name]             : either the name of the library, or its artifact name.
+//
+//            See https://github.com/google/play-services-plugins/tree/master/oss-licenses-plugin
+//        */
+//        val licensesData = resources
+//            .openRawResource(R.raw.third_party_licenses)
+//            .readBytes()
+//        val licensesMetadataReader = resources
+//            .openRawResource(R.raw.third_party_license_metadata)
+//            .bufferedReader()
+//
+//        return licensesMetadataReader.use { reader -> reader.readLines() }.map { line ->
+//            val (section, name) = line.split(" ", limit = 2)
+//            val (startOffset, length) = section.split(":", limit = 2).map(String::toInt)
+//            val licenseData = licensesData.sliceArray(startOffset until startOffset + length)
+//            val licenseText = licenseData.toString(Charset.forName("UTF-8"))
+//            LibraryItem(name, licenseText)
+//        }.sortedBy { item -> item.name.toLowerCase(Locale.ROOT) }
+//    }
 
-               - third_party_licenses which is the binary concatenation of all the licenses text for
-                 all the libraries. License texts can either be an URL to a license file or just the
-                 raw text of the license.
-
-               - third_party_licenses_metadata which contains one dependency per line formatted in
-                 the following way: "[start_offset]:[length] [name]"
-
-                 [start_offset]     : first byte in third_party_licenses that contains the license
-                                      text for this library.
-                 [length]           : length of the license text for this library in
-                                      third_party_licenses.
-                 [name]             : either the name of the library, or its artifact name.
-
-            See https://github.com/google/play-services-plugins/tree/master/oss-licenses-plugin
-        */
-        val licensesData = resources
-            .openRawResource(R.raw.third_party_licenses)
-            .readBytes()
-        val licensesMetadataReader = resources
-            .openRawResource(R.raw.third_party_license_metadata)
-            .bufferedReader()
-
-        return licensesMetadataReader.use { reader -> reader.readLines() }.map { line ->
-            val (section, name) = line.split(" ", limit = 2)
-            val (startOffset, length) = section.split(":", limit = 2).map(String::toInt)
-            val licenseData = licensesData.sliceArray(startOffset until startOffset + length)
-            val licenseText = licenseData.toString(Charset.forName("UTF-8"))
-            LibraryItem(name, licenseText)
-        }.sortedBy { item -> item.name.toLowerCase(Locale.ROOT) }
-    }
-
-    private fun showLicenseDialog(libraryItem: LibraryItem) {
-        val dialog = AlertDialog.Builder(requireContext())
-            .setTitle(libraryItem.name)
-            .setMessage(libraryItem.license)
-            .create()
-        dialog.show()
-
-        val textView = dialog.findViewById<TextView>(android.R.id.message)!!
-        Linkify.addLinks(textView, Linkify.ALL)
-        textView.linksClickable = true
-        textView.textSize = LICENSE_TEXT_SIZE
-        textView.typeface = Typeface.MONOSPACE
-    }
+//    private fun showLicenseDialog(libraryItem: LibraryItem) {
+//        val dialog = AlertDialog.Builder(requireContext())
+//            .setTitle(libraryItem.name)
+//            .setMessage(libraryItem.license)
+//            .create()
+//        dialog.show()
+//
+//        val textView = dialog.findViewById<TextView>(android.R.id.message)!!
+//        Linkify.addLinks(textView, Linkify.ALL)
+//        textView.linksClickable = true
+//        textView.textSize = LICENSE_TEXT_SIZE
+//        textView.typeface = Typeface.MONOSPACE
+//    }
 
     companion object {
         private const val LICENSE_TEXT_SIZE = 10F

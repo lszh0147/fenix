@@ -156,9 +156,9 @@ class BackgroundServices(
         accountManager.register(accountAbnormalities)
 
         // Enable push if it's configured.
-        push.feature?.let { autoPushFeature ->
-            FxaPushSupportFeature(context, accountManager, autoPushFeature, crashReporter)
-        }
+//        push.feature?.let { autoPushFeature ->
+//            FxaPushSupportFeature(context, accountManager, autoPushFeature, crashReporter)
+//        }
 //        push.feature?.let { autoPushFeature ->
 //            FxaPushSupportFeature(context, accountManager, autoPushFeature)
 //        }

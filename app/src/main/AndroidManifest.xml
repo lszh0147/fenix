@@ -281,6 +281,18 @@
             android:name="androidx.work.impl.WorkManagerInitializer"
             android:authorities="${applicationId}.workmanager-init"
             tools:node="remove" />
+
+
+        <service android:exported="false" android:name="mozilla.components.lib.crash.handler.CrashHandlerService" android:process=":mozilla.components.lib.crash.CrashHandler"  tools:node="remove"/>
+        <service android:exported="false" android:name="mozilla.components.lib.crash.service.SendCrashReportService" android:process=":crashReportingProcess"  tools:node="remove"/>
+        <service android:exported="false" android:name="mozilla.components.lib.crash.service.SendCrashTelemetryService" android:process=":crashReportingProcess"  tools:node="remove"/>
+<!--        <service android:enabled="true" android:exported="false" android:name="com.leanplum.LeanplumPushFirebaseMessagingService"   tools:node="remove"/>-->
+        <service android:name="com.leanplum.LeanplumPushRegistrationService" tools:node="remove"/>
+        <service android:name="com.leanplum.LeanplumLocalPushListenerService" android:permission="android.permission.BIND_JOB_SERVICE" tools:node="remove"/>
+        <service android:enabled="false" android:exported="true" android:name="com.google.android.play.core.assetpacks.AssetPackExtractionService" tools:node="remove"/>
+
+        <receiver android:enabled="true" android:exported="false" android:name="com.leanplum.LeanplumPushReceiver"  tools:node="remove"/>
+        <receiver android:name="com.leanplum.LeanplumJobStartReceiver" tools:node="remove"/>
     </application>
 
 </manifest>

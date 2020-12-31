@@ -126,6 +126,8 @@ import org.mozilla.fenix.wifi.SitePermissionsWifiIntegration
 import java.lang.ref.WeakReference
 import mozilla.components.feature.media.fullscreen.MediaFullscreenOrientationFeature
 import org.mozilla.fenix.FeatureFlags.newMediaSessionApi
+import org.mozilla.fenix.settings.PhoneFeature
+import org.mozilla.fenix.settings.quicksettings.QuickSettingsSheetDialogFragmentDirections
 
 /**
  * Base fragment extended by [BrowserFragment].
@@ -228,10 +230,8 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler,
 
         observeTabSelection(requireComponents.core.store)
 
-        lifecycleScope.launch(IO) {
-            if (!onboarding.userHasBeenOnboarded()) {
-                observeTabSource(requireComponents.core.store)
-            }
+        if (!onboarding.userHasBeenOnboarded()) {
+            observeTabSource(requireComponents.core.store)
         }
 
         requireContext().accessibilityManager.addAccessibilityStateChangeListener(this)
@@ -367,6 +367,10 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler,
                 showQuickSettingsDialog()
             }
 
+            browserToolbarView.view.display.setOnPermissionIndicatorClickedListener {
+                navigateToAutoplaySetting()
+            }
+
             browserToolbarView.view.display.setOnTrackingProtectionClickedListener {
                 context.metrics.track(Event.TrackingProtectionIconPressed)
                 showTrackingProtectionPanel()
@@ -466,6 +470,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler,
                     val dynamicDownloadDialog = DynamicDownloadDialog(
                         container = view.browserLayout,
                         downloadState = downloadState,
+                        metrics = requireComponents.analytics.metrics,
                         didFail = downloadJobStatus == DownloadState.Status.FAILED,
                         tryAgain = downloadFeature::tryAgain,
                         onCannotOpenFile = {
@@ -709,6 +714,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler,
                 tab -> arrayOf(tab.content.url, tab.content.loadRequest)
             }
             .collect {
+                findInPageIntegration.onBackPressed()
                 browserToolbarView.expand()
             }
         }
@@ -779,6 +785,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler,
         DynamicDownloadDialog(
             container = view.browserLayout,
             downloadState = savedDownloadState.first,
+            metrics = requireComponents.analytics.metrics,
             didFail = savedDownloadState.second,
             tryAgain = onTryAgain,
             onCannotOpenFile = onCannotOpenFile,
@@ -1176,6 +1183,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler,
     }
 
     final override fun onPictureInPictureModeChanged(enabled: Boolean) {
+        if (enabled) requireComponents.analytics.metrics.track(Event.MediaPictureInPictureState)
         pipFeature?.onPictureInPictureModeChanged(enabled)
     }
 
@@ -1208,6 +1216,8 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler,
             browserToolbarView.expand()
             // Without this, fullscreen has a margin at the top.
             engineView.setVerticalClipping(0)
+
+            requireComponents.analytics.metrics.track(Event.MediaFullscreenState)
         } else {
             activity?.exitImmersiveModeIfNeeded()
             (activity as? HomeActivity)?.let { activity ->
@@ -1280,5 +1290,11 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler,
         if (_browserToolbarView != null) {
             browserToolbarView.setScrollFlags(enabled)
         }
+    }
+
+    private fun navigateToAutoplaySetting() {
+        val directions = QuickSettingsSheetDialogFragmentDirections
+            .actionGlobalSitePermissionsManagePhoneFeature(PhoneFeature.AUTOPLAY_AUDIBLE)
+        findNavController().navigate(directions)
     }
 }

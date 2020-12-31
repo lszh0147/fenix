@@ -7,6 +7,8 @@ package org.mozilla.fenix.tabtray
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.accessibility.AccessibilityEvent
 import androidx.annotation.IdRes
@@ -95,9 +97,10 @@ class TabTrayView(
 
     private var tabsTouchHelper: TabsTouchHelper
     private val collectionsButtonAdapter = SaveToCollectionsButtonAdapter(interactor, isPrivate)
+    private val metrics = container.context.components.analytics.metrics
 
     private val syncedTabsController =
-        SyncedTabsController(lifecycleOwner, view, store, concatAdapter)
+        SyncedTabsController(lifecycleOwner, view, store, concatAdapter, metrics = metrics)
     private val syncedTabsFeature = ViewBoundFeatureWrapper<SyncedTabsFeature>()
 
     private var hasLoaded = false
@@ -125,12 +128,12 @@ class TabTrayView(
         }
         behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                if (interactor.onModeRequested() is Mode.Normal && !hasAccessibilityEnabled) {
-                    if (slideOffset >= SLIDE_OFFSET) {
-                        fabView.new_tab_button.show()
-                    } else {
-                        fabView.new_tab_button.hide()
-                    }
+                if (
+                    interactor.onModeRequested() is Mode.Normal &&
+                    !hasAccessibilityEnabled &&
+                    slideOffset >= SLIDE_OFFSET
+                ) {
+                    fabView.new_tab_button.show()
                 }
             }
 
@@ -312,7 +315,7 @@ class TabTrayView(
         }
 
         infoBanner?.apply {
-            view.infoBanner.visibility = View.VISIBLE
+            view.infoBanner.visibility = VISIBLE
             showBanner()
         }
     }
@@ -579,9 +582,9 @@ class TabTrayView(
         }
 
         view.tabsTray.visibility = if (hasNoTabs) {
-            View.INVISIBLE
+            INVISIBLE
         } else {
-            View.VISIBLE
+            VISIBLE
         }
 
         counter_text.text = updateTabCounter(browserState.normalTabs.size)

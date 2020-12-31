@@ -106,6 +106,8 @@ sealed class Event {
     object MediaPlayState : Event()
     object MediaPauseState : Event()
     object MediaStopState : Event()
+    object MediaFullscreenState : Event()
+    object MediaPictureInPictureState : Event()
     object InAppNotificationDownloadOpen : Event()
     object InAppNotificationDownloadTryAgain : Event()
     object NotificationDownloadCancel : Event()
@@ -113,6 +115,10 @@ sealed class Event {
     object NotificationDownloadPause : Event()
     object NotificationDownloadResume : Event()
     object NotificationDownloadTryAgain : Event()
+    object DownloadAdded : Event()
+    object DownloadsScreenOpened : Event()
+    object DownloadsItemOpened : Event()
+    object DownloadsItemDeleted : Event()
     object NotificationMediaPlay : Event()
     object NotificationMediaPause : Event()
     object TopSiteOpenDefault : Event()
@@ -182,6 +188,12 @@ sealed class Event {
     object MasterPasswordMigrationDisplayed : Event()
 
     object TabSettingsOpened : Event()
+
+    object CopyUrlUsed : Event()
+
+    object SyncedTabOpened : Event()
+
+    object RecentlyClosedTabsOpened : Event()
 
     // Interaction events with extras
 

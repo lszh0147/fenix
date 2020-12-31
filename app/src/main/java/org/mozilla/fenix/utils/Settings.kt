@@ -466,6 +466,11 @@ class Settings(private val appContext: Context) : PreferencesHolder {
         true
     )
 
+    val blockRedirectTrackersInCustomTrackingProtection by booleanPreference(
+        appContext.getPreferenceKey(R.string.pref_key_tracking_protection_redirect_trackers),
+        true
+    )
+
     val shouldUseFixedTopToolbar: Boolean
         get() {
             return touchExplorationIsEnabled || switchServiceIsEnabled
@@ -903,6 +908,16 @@ class Settings(private val appContext: Context) : PreferencesHolder {
 
     var openTabsCount by intPreference(
         appContext.getPreferenceKey(R.string.pref_key_open_tabs_count),
+        0
+    )
+
+    var mobileBookmarksSize by intPreference(
+        appContext.getPreferenceKey(R.string.pref_key_mobile_bookmarks_size),
+        0
+    )
+
+    var desktopBookmarksSize by intPreference(
+        appContext.getPreferenceKey(R.string.pref_key_desktop_bookmarks_size),
         0
     )
 

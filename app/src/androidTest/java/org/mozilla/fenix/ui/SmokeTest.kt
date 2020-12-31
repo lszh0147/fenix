@@ -15,13 +15,16 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mozilla.fenix.R
+import org.mozilla.fenix.ext.settings
 import org.mozilla.fenix.helpers.AndroidAssetDispatcher
 import org.mozilla.fenix.helpers.HomeActivityTestRule
 import org.mozilla.fenix.helpers.RecyclerViewIdlingResource
 import org.mozilla.fenix.helpers.TestAssetHelper
 import org.mozilla.fenix.helpers.TestHelper
 import org.mozilla.fenix.helpers.ViewVisibilityIdlingResource
+import org.mozilla.fenix.ui.robots.browserScreen
 import org.mozilla.fenix.ui.robots.clickUrlbar
+import org.mozilla.fenix.ui.robots.enhancedTrackingProtection
 import org.mozilla.fenix.ui.robots.homeScreen
 import org.mozilla.fenix.ui.robots.navigationToolbar
 
@@ -35,6 +38,7 @@ class SmokeTest {
     private lateinit var mockWebServer: MockWebServer
     private var awesomeBar: ViewVisibilityIdlingResource? = null
     private var searchSuggestionsIdlingResource: RecyclerViewIdlingResource? = null
+    private var addonsListIdlingResource: RecyclerViewIdlingResource? = null
 
     // This finds the dialog fragment child of the homeFragment, otherwise the awesomeBar would return null
     private fun getAwesomebarView(): View? {
@@ -59,6 +63,18 @@ class SmokeTest {
     @After
     fun tearDown() {
         mockWebServer.shutdown()
+
+        if (awesomeBar != null) {
+            IdlingRegistry.getInstance().unregister(awesomeBar!!)
+        }
+
+        if (searchSuggestionsIdlingResource != null) {
+            IdlingRegistry.getInstance().unregister(searchSuggestionsIdlingResource!!)
+        }
+
+        if (addonsListIdlingResource != null) {
+            IdlingRegistry.getInstance().unregister(addonsListIdlingResource!!)
+        }
     }
 
     // copied over from HomeScreenTest
@@ -112,6 +128,7 @@ class SmokeTest {
     }
 
     @Test
+    // Verifies the functionality of the onboarding Start Browsing button
     fun startBrowsingButtonTest() {
         homeScreen {
             verifyStartBrowsingButton()
@@ -121,6 +138,13 @@ class SmokeTest {
     }
 
     @Test
+    /* Verifies the nav bar:
+     - opening a web page
+     - the existence of nav bar items
+     - editing the url bar
+     - the tab drawer button
+     - opening a new search and dismissing the nav bar
+    */
     fun verifyBasicNavigationToolbarFunctionality() {
         val defaultWebPage = TestAssetHelper.getGenericAsset(mockWebServer, 1)
 
@@ -141,6 +165,7 @@ class SmokeTest {
     }
 
     @Test
+    // Verifies the list of items in a tab's 3 dot menu
     fun verifyPageMainMenuItemsTest() {
         val defaultWebPage = TestAssetHelper.getGenericAsset(mockWebServer, 1)
 
@@ -153,6 +178,7 @@ class SmokeTest {
 
     // Could be removed when more smoke tests from the History category are added
     @Test
+    // Verifies the History menu opens from a tab's 3 dot menu
     fun openMainMenuHistoryItemTest() {
         homeScreen {
         }.openThreeDotMenu {
@@ -163,6 +189,7 @@ class SmokeTest {
 
     // Could be removed when more smoke tests from the Bookmarks category are added
     @Test
+    // Verifies the Bookmarks menu opens from a tab's 3 dot menu
     fun openMainMenuBookmarksItemTest() {
         homeScreen {
         }.openThreeDotMenu {
@@ -172,6 +199,7 @@ class SmokeTest {
     }
 
     @Test
+    // Verifies the Synced tabs menu opens from a tab's 3 dot menu
     fun openMainMenuSyncedTabsItemTest() {
         homeScreen {
         }.openThreeDotMenu {
@@ -182,6 +210,7 @@ class SmokeTest {
 
     // Could be removed when more smoke tests from the Settings category are added
     @Test
+    // Verifies the Settings menu opens from a tab's 3 dot menu
     fun openMainMenuSettingsItemTest() {
         homeScreen {
         }.openThreeDotMenu {
@@ -191,6 +220,7 @@ class SmokeTest {
     }
 
     @Test
+    // Verifies the Find in page option in a tab's 3 dot menu
     fun openMainMenuFindInPageTest() {
         val defaultWebPage = TestAssetHelper.getGenericAsset(mockWebServer, 1)
 
@@ -203,6 +233,7 @@ class SmokeTest {
     }
 
     @Test
+    // Verifies the Add to top sites option in a tab's 3 dot menu
     fun openMainMenuAddTopSiteTest() {
         val defaultWebPage = TestAssetHelper.getGenericAsset(mockWebServer, 1)
 
@@ -219,6 +250,7 @@ class SmokeTest {
     }
 
     @Test
+    // Verifies the Add to home screen option in a tab's 3 dot menu
     fun mainMenuAddToHomeScreenTest() {
         val defaultWebPage = TestAssetHelper.getGenericAsset(mockWebServer, 1)
 
@@ -235,6 +267,7 @@ class SmokeTest {
     }
 
     @Test
+    // Verifies the Add to collection option in a tab's 3 dot menu
     fun openMainMenuAddToCollectionTest() {
         val defaultWebPage = TestAssetHelper.getGenericAsset(mockWebServer, 1)
 
@@ -247,6 +280,7 @@ class SmokeTest {
     }
 
     @Test
+    // Verifies the Bookmark button in a tab's 3 dot menu
     fun mainMenuBookmarkButtonTest() {
         val defaultWebPage = TestAssetHelper.getGenericAsset(mockWebServer, 1)
 
@@ -259,6 +293,7 @@ class SmokeTest {
     }
 
     @Test
+    // Verifies the Share button in a tab's 3 dot menu
     fun mainMenuShareButtonTest() {
         val defaultWebPage = TestAssetHelper.getGenericAsset(mockWebServer, 1)
 
@@ -271,6 +306,7 @@ class SmokeTest {
     }
 
     @Test
+    // Verifies the refresh button in a tab's 3 dot menu
     fun mainMenuRefreshButtonTest() {
         val refreshWebPage = TestAssetHelper.getRefreshAsset(mockWebServer)
 
@@ -286,6 +322,7 @@ class SmokeTest {
     }
 
     @Test
+    // Turns ETP toggle off from Settings and verifies the ETP shield is not displayed in the nav bar
     fun verifyETPShieldNotDisplayedIfOFFGlobally() {
         val defaultWebPage = TestAssetHelper.getGenericAsset(mockWebServer, 1)
 
@@ -313,6 +350,7 @@ class SmokeTest {
     }
 
     @Test
+    // Verifies changing the default engine from the Search Shortcut menu
     fun verifySearchEngineCanBeChangedTemporarilyUsingShortcuts() {
         val defaultWebPage = TestAssetHelper.getGenericAsset(mockWebServer, 1)
 
@@ -361,6 +399,7 @@ class SmokeTest {
     }
 
     @Test
+    // Ads a new search engine from the list of custom engines
     fun addPredefinedSearchEngineTest() {
         homeScreen {
         }.openThreeDotMenu {
@@ -380,8 +419,9 @@ class SmokeTest {
     }
 
     @Test
+    // Goes through the settings and changes the search suggestion toggle, then verifies it changes.
     fun toggleSearchSuggestions() {
-        // Goes through the settings and changes the search suggestion toggle, then verifies it changes.
+
         homeScreen {
         }.openNavigationToolbar {
             typeSearchTerm("mozilla")
@@ -413,6 +453,7 @@ class SmokeTest {
     }
 
     @Test
+    // Swipes the nav bar left/right to switch between tabs
     fun swipeToSwitchTabTest() {
         val firstWebPage = TestAssetHelper.getGenericAsset(mockWebServer, 1)
         val secondWebPage = TestAssetHelper.getGenericAsset(mockWebServer, 2)
@@ -430,6 +471,7 @@ class SmokeTest {
     }
 
     @Test
+    // Saves a login, then changes it and verifies the update
     fun updateSavedLoginTest() {
         val saveLoginTest =
             TestAssetHelper.getSaveLoginAsset(mockWebServer)
@@ -457,6 +499,75 @@ class SmokeTest {
             viewSavedLoginDetails()
             revealPassword()
             verifyPasswordSaved("test")
+        }
+    }
+
+    @Test
+    // Verifies that you can go to System settings and change app's permissions from inside the app
+    fun redirectToAppPermissionsSystemSettingsTest() {
+        homeScreen {
+        }.openThreeDotMenu {
+        }.openSettings {
+        }.openSettingsSubMenuSitePermissions {
+        }.openCamera {
+            verifyBlockedByAndroid()
+        }.goBack {
+        }.openLocation {
+            verifyBlockedByAndroid()
+        }.goBack {
+        }.openMicrophone {
+            verifyBlockedByAndroid()
+            clickGoToSettingsButton()
+            openAppSystemPermissionsSettings()
+            switchAppPermissionSystemSetting("Camera")
+            switchAppPermissionSystemSetting("Location")
+            switchAppPermissionSystemSetting("Microphone")
+            mDevice.pressBack()
+            mDevice.pressBack()
+            verifyUnblockedByAndroid()
+        }.goBack {
+        }.openLocation {
+            verifyUnblockedByAndroid()
+        }.goBack {
+        }.openCamera {
+            verifyUnblockedByAndroid()
+        }
+    }
+
+    @Test
+    // Installs uBlock add-on and checks that the app doesn't crash while loading pages with trackers
+    fun noCrashWithAddonInstalledTest() {
+        // setting ETP to Strict mode to test it works with add-ons
+        activityTestRule.activity.settings().setStrictETP()
+
+        val addonName = "uBlock Origin"
+        val trackingProtectionPage =
+            TestAssetHelper.getEnhancedTrackingProtectionAsset(mockWebServer)
+
+        homeScreen {
+        }.openThreeDotMenu {
+        }.openAddonsManagerMenu {
+            addonsListIdlingResource =
+                RecyclerViewIdlingResource(
+                    activityTestRule.activity.findViewById(R.id.add_ons_list),
+                    1
+                )
+            IdlingRegistry.getInstance().register(addonsListIdlingResource!!)
+            clickInstallAddon(addonName)
+            acceptInstallAddon()
+            verifyDownloadAddonPrompt(addonName, activityTestRule)
+            IdlingRegistry.getInstance().unregister(addonsListIdlingResource!!)
+        }.goBack {
+        }.openNavigationToolbar {
+        }.enterURLAndEnterToBrowser(trackingProtectionPage.url) {}
+        enhancedTrackingProtection {
+            verifyEnhancedTrackingProtectionNotice()
+        }.closeNotificationPopup {}
+
+        browserScreen {
+        }.openThreeDotMenu {
+        }.openReportSiteIssue {
+            verifyUrl("webcompat.com/issues/new")
         }
     }
 }

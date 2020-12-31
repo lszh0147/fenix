@@ -25,6 +25,8 @@ import org.mozilla.fenix.GleanMetrics.ContextualHintTrackingProtection
 import org.mozilla.fenix.GleanMetrics.CrashReporter
 import org.mozilla.fenix.GleanMetrics.CustomTab
 import org.mozilla.fenix.GleanMetrics.DownloadNotification
+import org.mozilla.fenix.GleanMetrics.DownloadsMisc
+import org.mozilla.fenix.GleanMetrics.DownloadsManagement
 import org.mozilla.fenix.GleanMetrics.ErrorPage
 import org.mozilla.fenix.GleanMetrics.Events
 import org.mozilla.fenix.GleanMetrics.FindInPage
@@ -402,6 +404,12 @@ private val Event.wrapper: EventWrapper<*>?
         is Event.MediaStopState -> EventWrapper<NoExtraKeys>(
             { MediaState.stop.record(it) }
         )
+        is Event.MediaFullscreenState -> EventWrapper<NoExtraKeys>(
+            { MediaState.fullscreen.record(it) }
+        )
+        is Event.MediaPictureInPictureState -> EventWrapper<NoExtraKeys>(
+            { MediaState.pictureInPicture.record(it) }
+        )
         is Event.InAppNotificationDownloadOpen -> EventWrapper<NoExtraKeys>(
             { DownloadNotification.inAppOpen.record(it) }
         )
@@ -422,6 +430,18 @@ private val Event.wrapper: EventWrapper<*>?
         )
         is Event.NotificationDownloadTryAgain -> EventWrapper<NoExtraKeys>(
             { DownloadNotification.tryAgain.record(it) }
+        )
+        is Event.DownloadAdded -> EventWrapper<NoExtraKeys>(
+            { DownloadsMisc.downloadAdded.record(it) }
+        )
+        is Event.DownloadsScreenOpened -> EventWrapper<NoExtraKeys>(
+            { DownloadsManagement.downloadsScreenOpened.record(it) }
+        )
+        is Event.DownloadsItemOpened -> EventWrapper<NoExtraKeys>(
+            { DownloadsManagement.itemOpened.record(it) }
+        )
+        is Event.DownloadsItemDeleted -> EventWrapper<NoExtraKeys>(
+            { DownloadsManagement.itemDeleted.record(it) }
         )
         is Event.NotificationMediaPlay -> EventWrapper<NoExtraKeys>(
             { MediaNotification.play.record(it) }
@@ -659,6 +679,17 @@ private val Event.wrapper: EventWrapper<*>?
             { ProgressiveWebApp.background.record(it) },
             { ProgressiveWebApp.backgroundKeys.valueOf(it) }
         )
+        is Event.CopyUrlUsed -> EventWrapper<NoExtraKeys>(
+            { Events.copyUrlTapped.record(it) }
+        )
+
+        is Event.SyncedTabOpened -> EventWrapper<NoExtraKeys>(
+            { Events.syncedTabOpened.record(it) }
+        )
+
+        is Event.RecentlyClosedTabsOpened -> EventWrapper<NoExtraKeys>(
+            { Events.recentlyClosedTabsOpened.record(it) }
+        )
 
         Event.MasterPasswordMigrationDisplayed -> EventWrapper<NoExtraKeys>(
             { MasterPassword.displayed.record(it) }
@@ -756,6 +787,18 @@ class GleanMetricsService(
             hasTopSites.set(topSitesSize > 0)
             if (topSitesSize > 0) {
                 topSitesCount.add(topSitesSize)
+            }
+
+            val desktopBookmarksSize = context.settings().desktopBookmarksSize
+            hasDesktopBookmarks.set(desktopBookmarksSize > 0)
+            if (desktopBookmarksSize > 0) {
+                desktopBookmarksCount.add(desktopBookmarksSize)
+            }
+
+            val mobileBookmarksSize = context.settings().mobileBookmarksSize
+            hasMobileBookmarks.set(mobileBookmarksSize > 0)
+            if (mobileBookmarksSize > 0) {
+                mobileBookmarksCount.add(mobileBookmarksSize)
             }
 
             toolbarPosition.set(

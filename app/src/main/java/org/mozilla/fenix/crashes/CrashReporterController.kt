@@ -72,16 +72,16 @@ class CrashReporterController(
      */
     private fun submitReportIfNecessary(sendCrash: Boolean): Job? {
         var job: Job? = null
-        val didSubmitReport = if (sendCrash && settings.isCrashReportingEnabled) {
-            job = GlobalScope.launch(Dispatchers.IO) {
-                components.analytics.crashReporter.submitReport(crash)
-            }
-            true
-        } else {
-            false
-        }
-
-        components.analytics.metrics.track(Event.CrashReporterClosed(didSubmitReport))
+//        val didSubmitReport = if (sendCrash && settings.isCrashReportingEnabled) {
+//            job = GlobalScope.launch(Dispatchers.IO) {
+//                components.analytics.crashReporter.submitReport(crash)
+//            }
+//            true
+//        } else {
+//            false
+//        }
+//
+//        components.analytics.metrics.track(Event.CrashReporterClosed(didSubmitReport))
         return job
     }
 }

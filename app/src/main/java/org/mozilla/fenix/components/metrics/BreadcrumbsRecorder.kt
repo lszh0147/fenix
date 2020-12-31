@@ -43,12 +43,12 @@ class BreadcrumbsRecorder(
         destination: NavDestination,
         arguments: Bundle?
     ) {
-        crashReporter.recordCrashBreadcrumb(
-            Breadcrumb(
-                message = getBreadcrumbMessage(destination),
-                category = "DestinationChanged",
-                level = Breadcrumb.Level.INFO
-            )
-        )
+//        crashReporter.recordCrashBreadcrumb(
+//            Breadcrumb(
+//                message = getBreadcrumbMessage(destination),
+//                category = "DestinationChanged",
+//                level = Breadcrumb.Level.INFO
+//            )
+//        )
     }
 }

@@ -49,8 +49,8 @@ class CrashReporterControllerTest {
 
     @Test
     fun `handle close and restore tab`() {
-        val controller = CrashReporterController(crash, session, navContoller, components, settings)
-        controller.handleCloseAndRestore(sendCrash = false)?.joinBlocking()
+//        val controller = CrashReporterController(crash, session, navContoller, components, settings)
+//        controller.handleCloseAndRestore(sendCrash = false)?.joinBlocking()
 
         verify { components.analytics.metrics.track(Event.CrashReporterClosed(false)) }
         verify { components.useCases.sessionUseCases.crashRecovery.invoke() }
@@ -59,8 +59,8 @@ class CrashReporterControllerTest {
 
     @Test
     fun `handle close and remove tab`() {
-        val controller = CrashReporterController(crash, session, navContoller, components, settings)
-        controller.handleCloseAndRemove(sendCrash = false)?.joinBlocking()
+//        val controller = CrashReporterController(crash, session, navContoller, components, settings)
+//        controller.handleCloseAndRemove(sendCrash = false)?.joinBlocking()
 
         verify { components.analytics.metrics.track(Event.CrashReporterClosed(false)) }
         verify { components.useCases.tabsUseCases.removeTab(session) }
@@ -74,8 +74,8 @@ class CrashReporterControllerTest {
     fun `don't submit report if setting is turned off`() {
         every { settings.isCrashReportingEnabled } returns false
 
-        val controller = CrashReporterController(crash, session, navContoller, components, settings)
-        controller.handleCloseAndRestore(sendCrash = true)?.joinBlocking()
+//        val controller = CrashReporterController(crash, session, navContoller, components, settings)
+//        controller.handleCloseAndRestore(sendCrash = true)?.joinBlocking()
 
         verify { components.analytics.metrics.track(Event.CrashReporterClosed(false)) }
     }
@@ -84,8 +84,8 @@ class CrashReporterControllerTest {
     fun `submit report if setting is turned on`() {
         every { settings.isCrashReportingEnabled } returns true
 
-        val controller = CrashReporterController(crash, session, navContoller, components, settings)
-        controller.handleCloseAndRestore(sendCrash = true)?.joinBlocking()
+//        val controller = CrashReporterController(crash, session, navContoller, components, settings)
+//        controller.handleCloseAndRestore(sendCrash = true)?.joinBlocking()
 
         verify { components.analytics.crashReporter.submitReport(crash) }
         verify { components.analytics.metrics.track(Event.CrashReporterClosed(true)) }

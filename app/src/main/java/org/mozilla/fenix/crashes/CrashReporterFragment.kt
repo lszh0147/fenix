@@ -25,32 +25,32 @@ class CrashReporterFragment : Fragment(R.layout.fragment_crash_reporter) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val args: CrashReporterFragmentArgs by navArgs()
-        val crash = Crash.fromIntent(args.crashIntent)
+//        val args: CrashReporterFragmentArgs by navArgs()
+//        val crash = Crash.fromIntent(args.crashIntent)
 
-        title.text = getString(R.string.tab_crash_title_2, getString(R.string.app_name))
+//        title.text = getString(R.string.tab_crash_title_2, getString(R.string.app_name))
 
-        val controller = CrashReporterController(
-            crash,
-            session = requireComponents.core.sessionManager.selectedSession,
-            navController = findNavController(),
-            components = requireComponents,
-            settings = requireContext().settings()
-        )
+//        val controller = CrashReporterController(
+//            crash,
+//            session = requireComponents.core.sessionManager.selectedSession,
+//            navController = findNavController(),
+//            components = requireComponents,
+//            settings = requireContext().settings()
+//        )
 
-        restoreTabButton.apply {
-            increaseTapArea(TAP_INCREASE_DP)
-            setOnClickListener {
-                controller.handleCloseAndRestore(sendCrashCheckbox.isChecked)
-            }
-        }
+//        restoreTabButton.apply {
+//            increaseTapArea(TAP_INCREASE_DP)
+//            setOnClickListener {
+//                controller.handleCloseAndRestore(sendCrashCheckbox.isChecked)
+//            }
+//        }
 
-        closeTabButton.apply {
-            increaseTapArea(TAP_INCREASE_DP)
-            setOnClickListener {
-                controller.handleCloseAndRemove(sendCrashCheckbox.isChecked)
-            }
-        }
+//        closeTabButton.apply {
+//            increaseTapArea(TAP_INCREASE_DP)
+//            setOnClickListener {
+//                controller.handleCloseAndRemove(sendCrashCheckbox.isChecked)
+//            }
+//        }
     }
 
     override fun onResume() {

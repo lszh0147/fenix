@@ -5,6 +5,11 @@ import org.mozilla.fenix.gradle.tasks.GithubDetailsTask
 buildscript {
     // This logic is duplicated in the allprojects block: I don't know how to fix that.
     repositories {
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url 'https://jitpack.io' }
         maven {
             name "Mozilla Nightly"
@@ -79,6 +84,11 @@ plugins {
 allprojects {
     // This logic is duplicated in the buildscript block: I don't know how to fix that.
     repositories {
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
         maven {
             name "Mozilla Nightly"
             url "https://nightly.maven.mozilla.org/maven2"

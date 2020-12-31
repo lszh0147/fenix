@@ -35,13 +35,13 @@ class CrashReporterController(
      * @param sendCrash If true, submit a crash report.
      * @return Job if report is submitted through an IO thread, null otherwise
      */
-    fun handleCloseAndRestore(sendCrash: Boolean): Job? {
-        val job = submitReportIfNecessary(sendCrash)
-
-        components.useCases.sessionUseCases.crashRecovery.invoke()
-        navController.popBackStack()
-        return job
-    }
+//    fun handleCloseAndRestore(sendCrash: Boolean): Job? {
+//        val job = submitReportIfNecessary(sendCrash)
+//
+//        components.useCases.sessionUseCases.crashRecovery.invoke()
+//        navController.popBackStack()
+//        return null
+//    }
 
     /**
      * Closes the crash reporter fragment and the tab.
@@ -49,20 +49,20 @@ class CrashReporterController(
      * @param sendCrash If true, submit a crash report.
      * @return Job if report is submitted through an IO thread, null otherwise
      */
-    fun handleCloseAndRemove(sendCrash: Boolean): Job? {
-        session ?: return null
-        val job = submitReportIfNecessary(sendCrash)
+//    fun handleCloseAndRemove(sendCrash: Boolean): Job? {
+//        session ?: return null
+//        val job = submitReportIfNecessary(sendCrash)
+//
+//        components.useCases.tabsUseCases.removeTab(session)
+//        components.useCases.sessionUseCases.crashRecovery.invoke()
+//
+//        navController.nav(
+//            R.id.crashReporterFragment,
+//            CrashReporterFragmentDirections.actionGlobalHome()
+//        )
 
-        components.useCases.tabsUseCases.removeTab(session)
-        components.useCases.sessionUseCases.crashRecovery.invoke()
-
-        navController.nav(
-            R.id.crashReporterFragment,
-            CrashReporterFragmentDirections.actionGlobalHome()
-        )
-
-        return job
-    }
+//        return null
+//    }
 
     /**
      * Submits the crash report if the "Send crash" checkbox was checked and the setting is enabled.
@@ -70,8 +70,8 @@ class CrashReporterController(
      * @param sendCrash If true, submit a crash report.
      * @return Job if report is submitted through an IO thread, null otherwise
      */
-    private fun submitReportIfNecessary(sendCrash: Boolean): Job? {
-        var job: Job? = null
+//    private fun submitReportIfNecessary(sendCrash: Boolean): Job? {
+//        var job: Job? = null
 //        val didSubmitReport = if (sendCrash && settings.isCrashReportingEnabled) {
 //            job = GlobalScope.launch(Dispatchers.IO) {
 //                components.analytics.crashReporter.submitReport(crash)
@@ -82,6 +82,6 @@ class CrashReporterController(
 //        }
 //
 //        components.analytics.metrics.track(Event.CrashReporterClosed(didSubmitReport))
-        return job
-    }
+//        return job
+//    }
 }

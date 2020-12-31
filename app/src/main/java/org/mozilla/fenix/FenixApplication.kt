@@ -373,9 +373,9 @@ open class FenixApplication : LocaleAwareApplication(), Provider {
             GlobalAddonDependencyProvider.initialize(
                 components.addonManager,
                 components.addonUpdater,
-                onCrash = { exception ->
+//                onCrash = { exception ->
 //                    components.analytics.crashReporter.submitCaughtException(exception)
-                }
+//                }
             )
             WebExtensionSupport.initialize(
                 components.core.engine,
